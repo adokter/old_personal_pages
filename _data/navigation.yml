@@ -1,0 +1,16 @@
+# Site navigation links
+
+- title: CV
+  url: /CV/
+  excerpt: "Curriculum Vitae"
+  image: 400x250.gif
+
+- title: Projects
+  url: /projects/
+  excerpt: "Current Projects"
+  image:
+
+- title: About
+  url: /about/
+  excerpt: "About this site"
+  image:

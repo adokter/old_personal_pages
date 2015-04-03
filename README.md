@@ -1,2 +1,16 @@
-# Notes
-To run Jekyll in a way that matches the GitHub Pages build server, run Jekyll with Bundler. Use the command bundle `exec jekyll serve` in the root of your repository (after switching to the gh-pages branch for project repositories), and your site should be available at http://localhost:4000. For a full list of Jekyll commands, see the Jekyll documentation.
+# Skinny Bones Jekyll Starter
+
+Just a little something I'm using to jump start a site refresh. I like to think of it as a starter for building your own Jekyll site. I purposely keep the styling minimal and bare to make it easier to add your own flare and markup.
+
+I'm currently using a variation of it on my personal website [Made Mistakes](http://mademistakes.com) with some modifications. To learn more about how to use the theme and install it check out the [Skinny Bones demo](http://mmistakes.github.io/skinny-bones-jekyll/) (*work in progress*).
+
+![screenshot of Skinny Bones](http://mmistakes.github.io/skinny-bones-jekyll/images/skinny-bones-theme-feature.jpg)
+
+---
+
+## Notable Features
+
+* Stylesheet built using Sass. *Requires Jekyll 2.x*
+* Data files for easier customization of the site navigation/footer and for supporting multiple authors.
+* Optional Disqus comments, table of contents, social sharing links, and Google AdSense ads.
+* And more.
