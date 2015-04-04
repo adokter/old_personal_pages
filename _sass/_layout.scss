@@ -121,6 +121,13 @@
 	}
 }
 
+.social-menu {
+	@include clearfix;
+	font-weight: 700;
+	a {
+		color: $facebook-color
+	}
+}
 
 /*
    Page wrapper
