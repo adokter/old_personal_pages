@@ -4,7 +4,7 @@ title: "Example Media Template"
 modified: 2015-04-04T10:26:52+02:00
 categories: "mediaatje"
 excerpt: "this is the excerpt"
-tags: [startpage,mediatag1,mediatag2]
+tags: [mediatag1,mediatag2]
 image:
   feature: bio-photo.jpg
   teaser: 400x250.gif
