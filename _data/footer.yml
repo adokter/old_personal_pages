@@ -1,7 +1,16 @@
 # Footer navigation links
 
-- title: foetertje
-  url:
+- title: HOME
+  url: /
 
-- title: faceboekje
-  url: http://www.facebook.com
+- title: Research
+  url: /research/
+
+- title: CV
+  url: /CV/
+
+- title: Publications
+  url: /publications/
+
+- title: Contact 
+  url: /contact/
