@@ -238,6 +238,7 @@
 	background-position: center top;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+        background-size: contain;
 	text-align: left; // AMD: replaced center with left
 	color: $white;
 	@include media($large) {
