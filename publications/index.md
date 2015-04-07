@@ -9,6 +9,7 @@ image:
   teaser: 400x250.gif 
   thumb: apple-touch-icon-precomposed.png 
 ads: false 
+share: false
 ---
 
 8.	Dokter A.M., Ebbinge B.S., Year-round itinerary of a GPS-tracked Brent Goose Branta b. bernicla that visited the Bassin d’Arcachon, France. Wildfowl special issue 3: 135–141 (2014)

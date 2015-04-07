@@ -3,7 +3,7 @@ layout: landing
 permalink: /
 ---
 
-## Recent Projects
+### Recent Projects
 
 <div class="wrap">
 <div class="tiles">
@@ -12,7 +12,3 @@ permalink: /
 {% endfor %}
 </div><!-- /.tiles -->
 </div>
-
-## and more
-bla bla
-bla bla
