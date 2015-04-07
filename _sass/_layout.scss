@@ -238,19 +238,19 @@
 	background-position: center top;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	text-align: center;
+	text-align: left; // AMD: replaced center with left
 	color: $white;
 	@include media($large) {
 		background-size: cover;
 	}
 }
 .page-lead-content {
-	padding: 1em;
+	padding: 3em 0; // AMD: added 0 padding x-axis, tripled padding
 	@include media($medium) {
-		padding: 2em;
+		padding: 6em 0; // AMD: added 0 padding x-axis, tripled padding
 	}
 	@include media($large) {
-		padding: 3em;
+		padding: 9em 0; // AMD: added 0 padding x-axis, tripled padding
 	}
 	h1 {
 		@include font-size(48);
