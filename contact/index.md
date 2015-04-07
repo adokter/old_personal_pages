@@ -14,7 +14,7 @@ share: false
 
 ##### Send an email:
 
-<form action="//formspree.io/adriaandokter@gmail.com">
+<form action="//formspree.io/adriaandokter@gmail.com" role="form" method="POST">
     <input type="text" name="name" placeholder="Your name">
     <input type="email" name="_replyto" placeholder="Your email address">
     <input type="hidden" name="_subject" value="New submission!" />
