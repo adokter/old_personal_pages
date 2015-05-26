@@ -5,7 +5,7 @@ date: 2015-04-04T10:26:11+02:00
 modified: 2015-04-04T10:26:52+02:00 
 excerpt: "this is the excerpt" 
 image: 
-  feature:
+  feature: 
   teaser: 400x250.gif 
   thumb: apple-touch-icon-precomposed.png 
 ads: false 
@@ -22,6 +22,8 @@ share: false
     <textarea name="message" rows="5" placeholder="Your message"></textarea>
     <input type="submit" value="Send">
 </form>
+
+!["it's me"](/images/AdriaanBrent201505.jpg)
 
 ##### Work Addresses:
 

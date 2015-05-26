@@ -1,0 +1,2 @@
+to build:
+bundle exec jekyll build

@@ -237,32 +237,23 @@
 .page-lead {
 	background-position: center top;
 	background-repeat: no-repeat;
-	background-attachment: fixed;
-        background-size: contain;
-	text-align: left; // AMD: replaced center with left
+	background-attachment: scroll; // AMD: replaced fixed with scroll
+        background-size: 100%; //AMD: replaced contain with 100%
+	text-align: left; // AMD: replaced center with justify
 	color: $white;
 	@include media($large) {
 		background-size: cover;
 	}
 }
 .page-lead-content {
-	padding: 3em 0; // AMD: added 0 padding x-axis, tripled padding
+        padding: 1em 0em;
 	@include media($medium) {
-		padding: 6em 0; // AMD: added 0 padding x-axis, tripled padding
+		padding: 4em 0em; // AMD: added 0 padding x-axis, tripled padding
 	}
 	@include media($large) {
-		padding: 9em 0; // AMD: added 0 padding x-axis, tripled padding
+		margin: 6em 1em; // AMD: added 0 padding x-axis, tripled padding
 	}
 	h1 {
-		@include font-size(48);
-		@include media($medium) {
-			@include font-size(60);
-		}
-		@include media($large) {
-			@include font-size(72);
-		}
-	}
-	h2 {
 		@include font-size(20);
 		@include media($medium) {
 			@include font-size(24);
@@ -271,6 +262,10 @@
 			@include font-size(32);
 		}
 	}
+        div {
+             @include outer-container;
+             @include span-columns(6);
+        }
 }
 // page header
 .page-feature {
