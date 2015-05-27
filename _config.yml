@@ -8,7 +8,8 @@ feature: Brent-banner-narrow.jpg
 featuretext: landing.md
 locale:
 #url: http://localhost:4000
-url: http://adokter.github.io
+#url: http://adokter.github.io
+url: http://adriaandokter.com
 
 # Jekyll configuration
 
