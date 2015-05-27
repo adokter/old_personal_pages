@@ -264,9 +264,19 @@
 	}
         div {
              @include outer-container;
-             @include span-columns(6);
+             @include span-columns(5);
         }
 }
+// page-lead-intro by AMD
+.page-lead-intro {
+	@include span-columns(8);
+        text-align: justify;
+}
+.page-lead-introimg {
+        float: right;
+        margin: 10px 0 10px 10px;
+}
+
 // page header
 .page-feature {
 	@include fill-parent;
