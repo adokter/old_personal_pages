@@ -16,3 +16,7 @@ I'm currently using a variation of it on my personal website [Made Mistakes](htt
 * And more.
 
 http://davidensinger.com/2014/04/transferring-the-dns-from-namecheap-to-cloudflare-for-github-pages/
+
+## compiling / serving
+* command `bundle exec jekyll build` to compile
+* command `bundle exec jekyll serve` to serve locally
