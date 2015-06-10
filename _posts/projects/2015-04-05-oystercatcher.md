@@ -7,7 +7,7 @@ categories: "projects"
 excerpt: "How do Eurasian Oystercatchers (Haematopus ostralegus) exploit their dynamic intertidal habitat, and can we predict its carrying capacity in winter?"
 tags: [startpage,posttag1,posttag2]
 image:
-  feature: "RW001Y3-2 Jeroen Onrust.jpg"
+  feature: "Oystercatcher3ind.jpg"
   credit: Jeroen Onrust
   creditlink: http://www.rug.nl/staff/j.onrust/
   teaser: "RW001Y3-1 Jeroen Onrust 400x250.jpg" 
