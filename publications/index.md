@@ -13,6 +13,7 @@ ads: false
 share: false
 ---
 
+###Peer-reviewed articles:
 8.	Dokter A.M., Ebbinge B.S., Year-round itinerary of a GPS-tracked Brent Goose Branta b. bernicla that visited the Bassin d’Arcachon, France. Wildfowl special issue 3: 135–141 (2014)
 6.	Shamoun-Baranes, J., Alves, J. A., Bauer, S., Dokter, A. M., Hüppop, O., Koistinen, J., Leijnse, H., Liechti, F., van Gasteren, H. & Chapman, J. W. (2014). Continental-scale radar monitoring of the aerial movements of animals. Movement Ecology, 2(1), 9.
 7.	McLaren, J. D., Shamoun-Baranes, J., Dokter, A. M., Klaassen, R. H., & Bouten, W. (2014). Optimal orientation in flows: providing a benchmark for animal movement strategies. Journal of The Royal Society Interface, 11(99), 20140588
