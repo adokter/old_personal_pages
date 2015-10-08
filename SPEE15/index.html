@@ -76,10 +76,6 @@ img {
 </div>
 
 
-<div id="introduction" class="section level2">
-<h2>Introduction</h2>
-<p>In this practical we will study spatial interpolation methods.</p>
-</div>
 <div id="preparation" class="section level2">
 <h2>Preparation</h2>
 <p>In this practical we will work with different types of data: GPS tracking data on individual Oystercatchers, GIS data (bathymetry) of the Balgzand, and sampling data on the benthic food of Oystercatchers. Before we start, first make sure that all packages are installed &amp; loaded.</p>
@@ -94,7 +90,22 @@ img {
 <span class="kw">library</span>(lattice)
 <span class="kw">library</span>(latticeExtra)</code></pre>
 <p>Next, we load the data with which we’ll work in this practical.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">download.file</span>(<span class="st">&quot;http://adriaandokter.com/SPEE15/Rpractical/Balgzand2009.asc&quot;</span>, <span class="dt">destfile =</span> <span class="st">&quot;Balgzand2009.asc&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">'YOUR/WORKING DIRECTORY/SHOULD/GO/HERE'</span>)
+
+<span class="co"># download data</span>
+<span class="kw">download.file</span>(<span class="st">&quot;http://adriaandokter.com/SPEE15/Rpractical/Balgzand2009.asc&quot;</span>, <span class="dt">destfile =</span> <span class="st">&quot;Balgzand2009.asc&quot;</span>)
+<span class="kw">download.file</span>(<span class="st">&quot;http://adriaandokter.com/SPEE15/Rpractical/practical_functions.R&quot;</span>, <span class="dt">destfile =</span> <span class="st">&quot;practial_functions.R&quot;</span>)
+<span class="kw">download.file</span>(<span class="st">&quot;http://adriaandokter.com/SPEE15/Rpractical/DataSampling.RData&quot;</span>, <span class="dt">destfile =</span> <span class="st">&quot;DataSampling.RData&quot;</span>)
+<span class="kw">download.file</span>(<span class="st">&quot;http://adriaandokter.com/SPEE15/Rpractical/PatchPolygons.RData&quot;</span>, <span class="dt">destfile =</span> <span class="st">&quot;PatchPolygons.RData&quot;</span>)
+<span class="kw">download.file</span>(<span class="st">&quot;http://adriaandokter.com/SPEE15/Rpractical/GPSData.all.RData&quot;</span>, <span class="dt">destfile =</span> <span class="st">&quot;GPSData.all.RData&quot;</span>)
+## load the data
+BathymetryMap&lt;-<span class="kw">readAsciiGrid</span>(<span class="st">'Balgzand2009.asc'</span>,<span class="dt">colname=</span><span class="st">'bathymetry'</span>)
+<span class="kw">load</span>(<span class="st">&quot;DataSampling.RData&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;PatchPolygons.RData&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;GPSData.all.RData&quot;</span>)
+<span class="kw">source</span>(<span class="st">&quot;practical_functions.R&quot;</span>)
+
+
 ## TO ADD .RData files</code></pre>
 <p>Read in the bathymetric map, and plot it</p>
 <pre class="sourceCode r"><code class="sourceCode r">BathymetryMap&lt;-<span class="kw">readAsciiGrid</span>(<span class="st">'Balgzand2009.asc'</span>,<span class="dt">colname=</span><span class="st">'bathymetry'</span>)
@@ -113,7 +124,7 @@ img {
 <span class="kw">points</span>(GPSData.all[,<span class="kw">c</span>(<span class="st">&quot;RDX&quot;</span>,<span class="st">&quot;RDY&quot;</span>)],<span class="dt">col=</span><span class="st">'red'</span>,<span class="dt">pch=</span><span class="st">&quot;.&quot;</span>)</code></pre>
 <p>First we make a subselection of the data, to exclude the two birds that lived outside the core study area of the western Balgzand. We also convert from the simple <code>data.frame</code> class to a <code>SpatialPointsDataFrame</code> class object, by which we tell R that these are spatial data.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Select data only in the core area on Balgzand:</span>
-GPSData=GPSData.all[GPSData$RDX&gt;<span class="dv">115000</span> &amp;<span class="st"> </span>GPSData.all$RDX&lt;<span class="dv">120000</span> &amp;<span class="st"> </span>GPSData.all$RDY&gt;<span class="dv">548000</span> &amp;<span class="st"> </span>GPSData.all$RDY&lt;<span class="dv">554000</span>,]
+GPSData=GPSData.all[GPSData.all$RDX&gt;<span class="dv">115000</span> &amp;<span class="st"> </span>GPSData.all$RDX&lt;<span class="dv">120000</span> &amp;<span class="st"> </span>GPSData.all$RDY&gt;<span class="dv">548000</span> &amp;<span class="st"> </span>GPSData.all$RDY&lt;<span class="dv">554000</span>,]
 <span class="co"># The above subselection has removed some birds</span>
 <span class="co"># the command droplevels removes factor levels (of field ID) that are no longer used</span>
 GPSData=<span class="kw">droplevels</span>(GPSData)
@@ -144,25 +155,25 @@ fullgrid =<span class="st"> </span><span class="kw">mkraster</span>(<span class=
 <li>by setting <code>h='LSCV'</code> you tell the function to find a best estimate of the bandwidth parameter by least-squares cross-validation. Note that for a very fine spatial grid and a high number of points this can become computationally expensive, and there is no absolute guarantee the algorithm will converge to a best estimate.</li>
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># manual bandwidth of the kernel</span>
-kd.manual =<span class="st"> </span><span class="kw">kernelUD</span>(GPSDataSelect[<span class="st">'ID'</span>],<span class="dt">grid=</span>fullgrid,<span class="dt">h=</span><span class="dv">100</span>)
+kd.manual =<span class="st"> </span><span class="kw">kernelUD</span>(GPSData[<span class="st">'ID'</span>],<span class="dt">grid=</span>fullgrid,<span class="dt">h=</span><span class="dv">100</span>)
 <span class="co"># automated estimation of the bandwidth</span>
-kd.auto =<span class="st"> </span><span class="kw">kernelUD</span>(GPSDataSelect[<span class="st">'ID'</span>],<span class="dt">grid=</span>fullgrid,<span class="dt">h=</span><span class="st">&quot;LSCV&quot;</span>,<span class="dt">hlim =</span> <span class="kw">c</span>(<span class="fl">0.001</span>, <span class="fl">1.5</span>))
+kd.auto =<span class="st"> </span><span class="kw">kernelUD</span>(GPSData[<span class="st">'ID'</span>],<span class="dt">grid=</span>fullgrid,<span class="dt">h=</span><span class="st">&quot;LSCV&quot;</span>,<span class="dt">hlim =</span> <span class="kw">c</span>(<span class="fl">0.001</span>, <span class="fl">1.5</span>))
 <span class="co"># print the identifiers of the birds in the dataset (as a reminder):</span>
-<span class="kw">unique</span>(GPSDataSelect$ID)
+<span class="kw">unique</span>(GPSData$ID)
 <span class="co"># print the estimated bandwidth parameter h (example for bird 406)</span>
 kd.auto$<span class="st">&quot;406&quot;</span>@h</code></pre>
 <p>Now that we have estimated the utilisation distribution, we can calculate home ranges (at any percentage level you want) by intersecting it:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculate the kernel home range (in ha) for each individual, at the 50% and 80% percentage levels</span>
-kd.auto.area &lt;-<span class="st"> </span><span class="kw">kernel.area</span>(kd.auto, <span class="dt">percent=</span><span class="kw">c</span>(<span class="dv">50</span>,<span class="dv">80</span>))
+kd.manual.area &lt;-<span class="st"> </span><span class="kw">kernel.area</span>(kd.manual, <span class="dt">percent=</span><span class="kw">c</span>(<span class="dv">50</span>,<span class="dv">80</span>))
 <span class="co"># calculate the contours of the homeranges for plotting</span>
-khr80=<span class="kw">getverticeshr</span>(kda.auto, <span class="dt">percent=</span><span class="dv">80</span>)</code></pre>
+khr80=<span class="kw">getverticeshr</span>(kd.manual, <span class="dt">percent=</span><span class="dv">80</span>)</code></pre>
 <p>And we may plot the home range polygons on the base map, together with the points on which it was estimated:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot the basemap</span>
 <span class="kw">image</span>(BathymetryMap,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">115000</span>,<span class="dv">120000</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">547000</span>,<span class="dv">555000</span>))
 <span class="co"># plot the homerange (example again for bird 406)</span>
 <span class="kw">plot</span>(khr80[<span class="st">&quot;406&quot;</span>,],<span class="dt">add=</span>T)
 <span class="co"># plot the underlying data points</span>
-<span class="kw">points</span>(GPSDataSelect[<span class="kw">which</span>(GPSDataSelect$ID==<span class="st">&quot;406&quot;</span>),]@coords,<span class="dt">col=</span><span class="st">'red'</span>,<span class="dt">pch=</span><span class="st">'.'</span>)</code></pre>
+<span class="kw">points</span>(GPSData[<span class="kw">which</span>(GPSData$ID==<span class="st">&quot;406&quot;</span>),]@coords,<span class="dt">col=</span><span class="st">'red'</span>,<span class="dt">pch=</span><span class="st">'.'</span>)</code></pre>
 <ol style="list-style-type: decimal">
 <li><p>Estimate 80% kernel home ranges with a bandwidth parameter of 200 meter and 20 meter. What are the differences, and which bandwidth do you think is more appropriate given the data?</p></li>
 <li><p>Explore how home range sizes varies at different percentage levels. Is there a cut-off point when the size suddenly becomes much larger? If so, why would this happen?</p></li>
@@ -182,12 +193,12 @@ khr80=<span class="kw">getverticeshr</span>(kda.auto, <span class="dt">percent=<
 <li>Given that utilisation distributions are normalised probability density functions, and the above definition, which range of values can BA assume? Which value indicates complete overlap?</li>
 </ol>
 <p>In R you may calculate the overlap between all pairs of estimated utilisation distributions as follows:</p>
-<pre class="sourceCode r"><code class="sourceCode r">ko=<span class="kw">kerneloverlaphr</span>(kud,<span class="dt">method=</span><span class="st">&quot;BA&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">ko=<span class="kw">kerneloverlaphr</span>(kd.manual,<span class="dt">method=</span><span class="st">&quot;BA&quot;</span>)</code></pre>
 <ol start="7" style="list-style-type: decimal">
 <li>Based on the overlap between all pairs, could you group individuals in different categories with a different use of the Balgzand?</li>
 </ol>
-<p>Because intertidal birds like Oystercatchers can only forage during low tide, there daily foraging routines are much more in sync with the alternation of the tides, than with the alternation between day and night. Nonetheless the foraging conditions</p>
-<p>Sunrise and sunset may be calculated at Balgzand with the following function:</p>
+<p>Because intertidal birds like Oystercatchers can only forage during low tide, their daily foraging routines are much more in sync with the alternation of the tides, than with the alternation between day and night. Nonetheless the foraging conditions change dramatically at night (e.g. in terms of vision, or predators), which may have consequences for the space use of the birds.</p>
+<p>Sunrise and sunset may be calculated at Balgzand with the following function, which is already loaded in the header:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot the basemap</span>
 SunRiseSet =<span class="st"> </span>function(date,<span class="dt">lat=</span><span class="fl">52.927336</span>,<span class="dt">lon=</span><span class="fl">4.849632</span>){
   <span class="kw">sunrise.set</span>(lat,lon,<span class="kw">strftime</span>(date,<span class="dt">format=</span><span class="st">&quot;%Y/%m/%d&quot;</span>))
@@ -207,10 +218,13 @@ SunRiseSet =<span class="st"> </span>function(date,<span class="dt">lat=</span><
 <span class="co"># plot the outline of the sampled patches (or 'beds', in dutch 'bank')</span>
 <span class="kw">plot</span>(PatchPolygons,<span class="dt">add=</span>T)
 <span class="co"># overlay the GPS points:</span>
-<span class="kw">points</span>(GPSData[,<span class="kw">c</span>(<span class="st">&quot;RDX&quot;</span>,<span class="st">&quot;RDY&quot;</span>)],<span class="dt">col=</span><span class="st">'red'</span>,<span class="dt">pch=</span><span class="st">&quot;.&quot;</span>)</code></pre>
+<span class="kw">points</span>(GPSData@coords,<span class="dt">col=</span><span class="st">'red'</span>,<span class="dt">pch=</span><span class="st">&quot;.&quot;</span>)</code></pre>
 <p>We will use regression kriging to make an interpolated map of cockle density (<code>CockleNDensity</code>) and cockle size (<code>CockleLength</code>).</p>
 <p><strong>Step 1</strong>: fit a variogram model (example for the cockle density data):</p>
-<pre class="sourceCode r"><code class="sourceCode r">## initialize a gstat object
+<pre class="sourceCode r"><code class="sourceCode r">## convert DataSampling, the data frame containing the information collected in the 
+## sampling program on Balgzand to a SpatialPointsDataFrame
+<span class="kw">coordinates</span>(DataSampling) &lt;-<span class="st"> </span><span class="er">~</span><span class="st"> </span>RDX+RDY
+## initialize a gstat object
 g &lt;-<span class="st"> </span><span class="kw">gstat</span>(<span class="dt">id=</span><span class="st">&quot;CockleNDensity&quot;</span>, <span class="dt">formula=</span>CockleNDensity ~<span class="st"> </span><span class="dv">1</span>, <span class="dt">data=</span>DataSampling)
 ## define a sensible maximum cutoff distance up to which you want to plot/fit the variogram
 ## (side question: why would you want to limit this range in our arrangement with multiple patches?)
@@ -250,40 +264,90 @@ samplingstations &lt;-<span class="st"> </span><span class="kw">list</span>(<spa
 <span class="co"># plot it</span>
 <span class="kw">spplot</span>(g.predict, <span class="dt">zcol=</span><span class="st">&quot;CockleNDensity.pred&quot;</span>, <span class="dt">at =</span> <span class="kw">seq</span>(-<span class="dv">10</span>,<span class="dv">250</span>,<span class="dv">10</span>), <span class="dt">sp.layout=</span><span class="kw">list</span>(samplingstations), <span class="dt">contour=</span><span class="ot">TRUE</span>, <span class="dt">labels=</span><span class="ot">FALSE</span>, <span class="dt">pretty=</span><span class="ot">TRUE</span>, <span class="dt">col=</span><span class="st">'brown'</span>, <span class="dt">main=</span><span class="st">'CockleNDensity - Kriging prediction'</span>,<span class="dt">xlim=</span>bbox[<span class="st">&quot;RDX&quot;</span>,],<span class="dt">ylim=</span>bbox[<span class="st">&quot;RDY&quot;</span>,])</code></pre>
 <ol start="10" style="list-style-type: decimal">
-<li><p>Explain why the sample variance equals the asymptote of the variogram</p></li>
-<li><p>Most of the sampling was performed on a 50 meter grid. Given the shape of the variogram for cockle density, was this a good choice? Would sampling on a grid with larger spacing have been reasonable (such that a larger area of the Balgzand and the homerange of the Oystercatchers could have been covered?)</p></li>
-<li><p>If it takes approximately two minutes to collect a sample (once a boat has brought you to the right mudflat), and you have two weeks to collect your data with a team of two people and a skipper, how many samples do you think you can (roughly) collect? (compare with the number of stations in this study)</p></li>
+<li><p>In this study we had a maximum of weeks to sample the food landscape, because over longer time scales the food landscape starts to change as a result of predation / depletion. If it takes approximately two minutes to collect a sample (once a boat has brought you to the right mudflat), how many samples do you think you can (roughly) collect per person in two weeks? How many people do you estimate were in the team that collected the sampling data in this study?</p></li>
+<li><p>Most of the sampling was performed on a 50 meter grid. Given the shape of the variogram for cockle density, was this a good choice? Would you have preferred sampling on a grid with larger spacing (such that a larger area of the Balgzand and the homerange of the Oystercatchers could have been covered?)</p></li>
+<li><p>Explain why the sample variance approaches the asymptote of the variogram</p></li>
 </ol>
-<p>The benthic food stocks in the intertidal go through a very interesting reproductive cycle, which is not yet well understood. Only once every few years there is major recruitment (spat fall) of one (or several) bivalve species. In those years many new Cockle beds establish, while in other years spat fall is almost absent. This highly pulsed recruitment - which is not properly understood yet - leads to strong spatial structures in the age of the bivalves (Cockle spat is smaller than 1 cm in length, 2y Cockles typically around 2 cm, and &gt;2y Cockles 3cm or more).</p>
+<p>The bivalve food stocks in the intertidal go through a very interesting reproductive cycle. Only once every few years there is major recruitment (spat fall) of one (or several) bivalve species. In those years many new Cockle beds establish, while in other years spat fall is almost absent. This highly pulsed recruitment - which is not properly understood yet - leads to strong spatial structures in the age of the bivalves (Cockle spat is smaller than 1 cm in length, 2y Cockles typically around 2 cm, and &gt;2y Cockles 3cm or more).</p>
 <ol start="13" style="list-style-type: decimal">
-<li><p>Also make a kriging interpolation for the size of the cockles, i.e. <code>CockleLength</code>.Compare the variogram for Cockle density and Cockle size. What are the differences, and can you hint at a cause for these differences, given the recruitment cycle of the Cockle?</p></li>
+<li><p>Also make a kriging interpolation for the size of the cockles, i.e. <code>CockleLength</code>. Compare the variogram for Cockle density and Cockle size. What are the differences, and can you hint at a cause for these differences, given the recruitment cycle of the Cockle?</p></li>
 <li><p>(extra) Because predation on Cockles is stronger on patches that are long exposed by the tides, you expect a strong trend with altitude in the abundance of Cockles. How are the cockles distributed in altitude? Explore whether the technique of universal kriging provides benefits, as compared to ordinary kriging.</p></li>
 </ol>
 </div>
-<div id="part-iii-ideal-free-model" class="section level2">
-<h2>Part III: ideal-free model</h2>
-<p>A common functional form for a Type II functional response is the so-called <em>Holling disk equation</em> (it is called the disc equation because of foraging experiments he performed, where he had a blindfolded person (i.e. his secretary) forage on hypothetical resources, consisting of round paper discs). Almost all functional responses for (shore)birds are described in the literature by different parametrisations of this equation.</p>
-<p><span class="math">\[f(n)=\frac{a n}{1+a h n}\]</span> with <em>n</em> the bird density, <em>a</em> the so-called attack rate (<em>a n</em> is called the encounter rate) , and <em>h</em> the handling time of the prey. Handling time is defined as the time spent opening and consuming a prey item.</p>
+<div id="part-iii-predicting-oystercatcher-distributions-using-optimality-theory" class="section level2">
+<h2>Part III: Predicting Oystercatcher distributions using optimality theory</h2>
+<p>A common functional form for a Type II functional response is the so-called <em>Holling disk equation</em> (it is called the disc equation because of foraging experiments performed by Holling, where he had a blindfolded person (i.e. his secretary) forage on hypothetical resources, consisting of round paper discs). Almost all functional responses for (shore)birds are described in the literature by different parametrisations of this equation.</p>
+<p><span class="math">\[f(n)=\frac{a n}{1+a h n}\]</span> with <em>n</em> the bird density, <em>a</em> the so-called attack rate (<em>an</em> is called the encounter rate) , and <em>h</em> the handling time of the prey. Handling time is defined as the time spent opening and consuming a prey item after encountering it.</p>
 <ol start="15" style="list-style-type: decimal">
 <li><p>Plot the equation and verify it has the shape of a Type II functional response. Why does the functional response reach a plateau? What variable determines the level of the plateau?</p></li>
 <li><p>Holling’s disk equation assumes that attack rates and handling times are independent of prey density. Are these reasonable assumptions, under which circumstances?</p></li>
 </ol>
-<p>Let us focus on one of the patches in the study area, patch number 4.</p>
 <p>Although Oystercatchers are specialized in eating large bivalve prey like Cockles, which they open with their powerful bill. Based on both field observations and experimental studies, the following expression for the capture rate (i.e. the rate at which Cockle preys are swallowed) of Cockles has been determined</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># capture rate (in cockles captured per second)</span>
 fCockle &lt;-<span class="st"> </span>function(density,length) <span class="fl">0.000860</span>*density/(<span class="dv">1</span> +<span class="st"> </span><span class="fl">0.0001897</span>*density*length^<span class="fl">1.792</span>)</code></pre>
 <ol start="17" style="list-style-type: decimal">
 <li>plot the capture rate that Oystercatchers can realize for several realistic size and density ranges</li>
 </ol>
-<p>A parameter highly relevant to a foraging Oystercatcher is the intake rate it can realize on different prey items. Intake rate is often considered the central currency in optimal foraging theory. The energetic intake for the Oystercatcher depends not only on the capture rate, but also on the energetic contents of the prey. This usually expressed in AFDM (ash-free dry mass, i.e. the dry weight of the flesh, corrected for components that cannot be burnt, like remains of sand). The following equation converts the length of a Cockle to AFDM:</p>
+<p>A parameter highly relevant to a foraging Oystercatcher is the intake rate it can realize on different prey items. Intake rate is often considered the central currency in optimal foraging theory. The energetic intake for the Oystercatcher depends not only on the capture rate, but also on the energetic contents of the prey. The energetic content is usually expressed in AFDM (ash-free dry mass, i.e. the dry weight of the flesh, corrected for components that cannot be burnt, like remains of sand). The following equation converts the length of a Cockle to AFDM:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the body mass index of Cockles in autumn, as measured on Balgzand</span>
 BMICOCKLE=<span class="dv">9</span>
 <span class="co"># conversion of Cockle length [mm] to AFDM (ash-free dry mass) [mg] given a BMI value</span>
 Length2AFDM &lt;-<span class="st"> </span>function(length) BMICOCKLE*(length^<span class="dv">3</span>)/(<span class="dv">10</span>^<span class="dv">3</span>) </code></pre>
+<p>Capture rate and flesh content can be combined into an intake rate <em>in the absence of conspecific competition</em>. This intake rate we call the interference-free intake rate (IFIR):</p>
+<pre class="sourceCode r"><code class="sourceCode r">IFIR &lt;-<span class="st"> </span>function(density,length) <span class="kw">fCockle</span>(density,length)*<span class="kw">Length2AFDM</span>(length)</code></pre>
 <ol start="18" style="list-style-type: decimal">
-<li>plot the intake rate in AFDM/s that Oystercatchers can realize for several realistic size and density ranges</li>
+<li>plot the intake rate in AFDM/s that Oystercatchers can realize for several realistic size and density ranges. Is the longer handling time for large Cockles compensated by a higher flesh content, or not?</li>
 </ol>
-<p>We are now ready to convert the landscape prey densities, as reconstructed in part II, into a landscape of intake rate, as perceived by Oystercatchers.</p>
+<p>We are now ready to convert the landscape prey densities, as reconstructed in part II, into a landscape of intake rate, as perceived by Oystercatchers. Let us focus - for the sake of simplicity - on one of the patches in the study area, patch number 4.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get the bounding box of patch 4 from the Polygon object (consists of two polygons, 04 and 04B)</span>
+bbox=PatchPolygons[<span class="kw">c</span>(<span class="st">&quot;04&quot;</span>,<span class="st">&quot;04B&quot;</span>)]@bbox
+<span class="co"># make a subset of the predicted cockle density map, and store it in patch4.pred object</span>
+tmp=g.predict[<span class="st">&quot;CockleNDensity.pred&quot;</span>]
+patch4.pred=tmp[tmp$x&gt;bbox[<span class="st">&quot;x&quot;</span>,<span class="st">&quot;min&quot;</span>] &amp;<span class="st"> </span>tmp$x&lt;bbox[<span class="st">&quot;x&quot;</span>,<span class="st">&quot;max&quot;</span>] &amp;<span class="st"> </span>tmp$y&gt;bbox[<span class="st">&quot;y&quot;</span>,<span class="st">&quot;min&quot;</span>] &amp;<span class="st"> </span>tmp$y&lt;bbox[<span class="st">&quot;y&quot;</span>,<span class="st">&quot;max&quot;</span>],]
+<span class="co"># remove negative Cockle density, which are non-sensicle, by setting them to zero.</span>
+<span class="co"># (side question: how is it possible that kriging produces negative values?)</span>
+patch4.pred@data$CockleNDensity.pred=<span class="kw">pmax</span>(patch4.pred@data$CockleNDensity.pred,<span class="dv">0</span>)
+<span class="co"># specify the range of Cockle density values to display</span>
+breaks=<span class="kw">seq</span>(-<span class="dv">10</span>,<span class="dv">200</span>,<span class="dv">10</span>)
+<span class="co"># plot the image</span>
+<span class="kw">image</span>(patch4.pred,<span class="dt">xlim=</span>bbox[<span class="st">&quot;x&quot;</span>,],<span class="dt">ylim=</span>bbox[<span class="st">&quot;y&quot;</span>,],<span class="dt">col=</span><span class="kw">terrain.colors</span>(<span class="kw">length</span>(breaks)-<span class="dv">1</span>),<span class="dt">breaks=</span>breaks)
+<span class="co"># overlay the GPS data points</span>
+<span class="kw">points</span>(GPSData@coords,<span class="dt">col=</span><span class="st">'red'</span>,<span class="dt">pch=</span><span class="st">&quot;.&quot;</span>)</code></pre>
+<p>Since the functional response depends on cockle size, this information needs to be added:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># For now, let's assume all cockles have a length of 30 mm</span>
+<span class="co"># Use your results from Part II to fill in the real values</span>
+patch4.pred@data$CockleLengthMean.pred=<span class="dv">30</span></code></pre>
+<ol start="19" style="list-style-type: decimal">
+<li>Use your results from part II to calculate the landscape of interference-free intake rates</li>
+</ol>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#  the area of a single grid cell</span>
+PatchSize=patch4.pred@grid@cellsize[<span class="dv">1</span>]*patch4.pred@grid@cellsize[<span class="dv">2</span>]</code></pre>
+<p>We can combine all the results to calculate the ideal-free distribution. The intake rate of Oystercatchers does not only depend on the food landscape, but also on the number of competitors present. This effect of competition (also called interference) has been shown to follow an exponential relationship, as shown by both experimental and field studies: <span class="math">\[I(n)=\exp(-k n)\]</span> with <em>n</em> the bird density and <em>k</em> the exponential interference constant. The intake rate <em>including interference effects</em> (IR) then equals: <span class="math">\[IR(n,s)=IFIR(n,s)\times I(n)\]</span> with <em>s</em> as before is the size of the prey.</p>
+<ol start="20" style="list-style-type: decimal">
+<li><p>When there is no competition or costs of interference (i.e. k approaches zero), how do you expect that identical, intake-rate maximizing birds will distribute?</p></li>
+<li><p>Assume we have a system with 2 patches, both of size 1. Further assume the exponential interference constant k=.01, and the interference free intake rate in the patches are 3 and 2. If 100 birds are released in the system, how will they distribute? Note: since all birds are identical, they will distribute such that they all have the same, maximized intake rate. Hint: express the bird density in terms of the interference-free intake rate. To find the maximized intake rate, invoke the condition that the bird densities multiplied the patch areas should add up to the total number of birds present (100).</p></li>
+</ol>
+<p>Let’s now calculate the IFD numerically:</p>
+<pre class="sourceCode r"><code class="sourceCode r">CockleLenghts=patch4.pred@data$CockleLengthMean.pred
+CockleDensities=patch4.pred@data$CockleNDensity.pred
+CockleIFIR =<span class="st"> </span><span class="kw">IFIR</span>(CockleDensities,CockleLenghts)
+Areas=<span class="kw">rep</span>(PatchSize,<span class="kw">length</span>(CockleDensities))
+<span class="co"># calculate the ideal-free distribution, assuming 400 birds on the patch, and an</span>
+<span class="co"># exponential interference constant of k=100</span>
+IFD.pred=<span class="kw">IFD</span>(CockleIFIR,Areas,<span class="dv">400</span>,<span class="dv">300</span>)
+<span class="co"># add the IFD prediction to the patch4.pred object:</span>
+patch4.pred@data$IFD.pred=IFD.pred$animaldensity
+<span class="co"># plot the IFD</span>
+breaks=<span class="kw">seq</span>(<span class="dv">0</span>,<span class="kw">max</span>(IFD.pred$animaldensity),<span class="kw">max</span>(IFD.pred$animaldensity)/<span class="dv">100</span>)
+<span class="kw">image</span>(patch4.pred[<span class="st">&quot;IFD.pred&quot;</span>],<span class="dt">xlim=</span>bbox[<span class="st">&quot;x&quot;</span>,],<span class="dt">ylim=</span>bbox[<span class="st">&quot;y&quot;</span>,],<span class="dt">col=</span><span class="kw">terrain.colors</span>(<span class="kw">length</span>(breaks)-<span class="dv">1</span>),<span class="dt">breaks=</span>breaks)
+<span class="co"># overlay the GPS points</span>
+<span class="kw">points</span>(GPSData@coords,<span class="dt">col=</span><span class="st">'red'</span>,<span class="dt">pch=</span><span class="st">&quot;.&quot;</span>)</code></pre>
+<p>Supporting field observations in patch 4 have indicated that during low tide around 400 Oystercatchers are foraging in this patch. Also, experimental studies in aviaries indicate that the interference constant as a result of direct competition equals k=5.</p>
+<ol start="22" style="list-style-type: decimal">
+<li><p>Predict the distribution of the 400 Oystercatchers in patch 4 for these parameters. What are the most striking differences when compared with the GPS data?</p></li>
+<li><p>Adjust the interference constant such that it best matches the GPS data (rough estimate required only). If your estimate and the model were to be true, at which distance would Oystercatchers start to experience density dependent competition effects? Is it reasonable to assume this density dependence is the result of direct interactions, like kleptoparasitism?</p></li>
+<li><p>The assumption of the ideal-free distribution is that birds are both ‘ideal’ and ‘free’. Are these good assumptions for an Oystercatcher? How do you expect the Oystercatcher distribution will change if birds do not behave ideal? And if they do not behave free?</p></li>
+</ol>
 <div id="license">
 This material is available under a <a href="http://creativecommons.org/licenses/by-sa/3.0">Creative Commons Attribution-ShareAlike 3.0 Unported</a>.
 </div>
