@@ -278,6 +278,10 @@ samplingstations &lt;-<span class="st"> </span><span class="kw">list</span>(<spa
 <h2>Part III: Predicting Oystercatcher distributions using optimality theory</h2>
 <p>A common functional form for a Type II functional response is the so-called <em>Holling disk equation</em> (it is called the disc equation because of foraging experiments performed by Holling, where he had a blindfolded person (i.e. his secretary) forage on hypothetical resources, consisting of round paper discs). Almost all functional responses for (shore)birds are described in the literature by different parametrisations of this equation.</p>
 <p><span class="math">\[f(n)=\frac{a n}{1+a h n}\]</span> with <em>n</em> the bird density, <em>a</em> the so-called attack rate (<em>an</em> is called the encounter rate) , and <em>h</em> the handling time of the prey. Handling time is defined as the time spent opening and consuming a prey item after encountering it.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># example to plot an analytical function:</span>
+f &lt;-<span class="st"> </span>function(x,a,h) (a*x)/(<span class="dv">1</span>+a*h*x)
+<span class="kw">curve</span>(<span class="kw">f</span>(x,<span class="dv">1</span>,<span class="dv">1</span>),<span class="dt">from=</span><span class="dv">0</span>,<span class="dt">to=</span><span class="dv">10</span>)
+<span class="kw">curve</span>(<span class="kw">f</span>(x,<span class="dv">1</span>,<span class="dv">2</span>),<span class="dt">from=</span><span class="dv">0</span>,<span class="dt">to=</span><span class="dv">10</span>,<span class="dt">add=</span>T)</code></pre>
 <ol start="15" style="list-style-type: decimal">
 <li><p>Plot the equation and verify it has the shape of a Type II functional response. Why does the functional response reach a plateau? What variable determines the level of the plateau?</p></li>
 <li><p>Holling’s disk equation assumes that attack rates and handling times are independent of prey density. Are these reasonable assumptions, under which circumstances?</p></li>
