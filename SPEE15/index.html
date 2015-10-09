@@ -219,7 +219,7 @@ SunRiseSet =<span class="st"> </span>function(date,<span class="dt">lat=</span><
 <span class="kw">plot</span>(PatchPolygons,<span class="dt">add=</span>T)
 <span class="co"># overlay the GPS points:</span>
 <span class="kw">points</span>(GPSData@coords,<span class="dt">col=</span><span class="st">'red'</span>,<span class="dt">pch=</span><span class="st">&quot;.&quot;</span>)</code></pre>
-<p>We will use regression kriging to make an interpolated map of cockle density (<code>CockleNDensity</code>) and cockle size (<code>CockleLength</code>).</p>
+<p>We will use regression kriging to make an interpolated map of cockle density (<code>CockleNDensity</code>) and cockle size (<code>CockleLengthMean</code>).</p>
 <p><strong>Step 1</strong>: fit a variogram model (example for the cockle density data):</p>
 <pre class="sourceCode r"><code class="sourceCode r">## convert DataSampling, the data frame containing the information collected in the 
 ## sampling program on Balgzand to a SpatialPointsDataFrame
@@ -270,7 +270,7 @@ samplingstations &lt;-<span class="st"> </span><span class="kw">list</span>(<spa
 </ol>
 <p>The bivalve food stocks in the intertidal go through a very interesting reproductive cycle. Only once every few years there is major recruitment (spat fall) of one (or several) bivalve species. In those years many new Cockle beds establish, while in other years spat fall is almost absent. This highly pulsed recruitment - which is not properly understood yet - leads to strong spatial structures in the age of the bivalves (Cockle spat is smaller than 1 cm in length, 2y Cockles typically around 2 cm, and &gt;2y Cockles 3cm or more).</p>
 <ol start="13" style="list-style-type: decimal">
-<li><p>Also make a kriging interpolation for the size of the cockles, i.e. <code>CockleLength</code>. Compare the variogram for Cockle density and Cockle size. What are the differences, and can you hint at a cause for these differences, given the recruitment cycle of the Cockle?</p></li>
+<li><p>Also make a kriging interpolation for the size of the cockles, i.e. <code>CockleLengthMean</code>. Compare the variogram for Cockle density and Cockle size. What are the differences, and can you hint at a cause for these differences, given the recruitment cycle of the Cockle?</p></li>
 <li><p>(extra) Because predation on Cockles is stronger on patches that are long exposed by the tides, you expect a strong trend with altitude in the abundance of Cockles. How are the cockles distributed in altitude? Explore whether the technique of universal kriging provides benefits, as compared to ordinary kriging.</p></li>
 </ol>
 </div>
