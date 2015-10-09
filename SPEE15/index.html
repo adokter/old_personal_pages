@@ -161,7 +161,7 @@ kd.auto =<span class="st"> </span><span class="kw">kernelUD</span>(GPSData[<span
 <span class="co"># print the identifiers of the birds in the dataset (as a reminder):</span>
 <span class="kw">unique</span>(GPSData$ID)
 <span class="co"># print the estimated bandwidth parameter h (example for bird 406)</span>
-kd.auto$<span class="st">&quot;406&quot;</span>@h</code></pre>
+kd.auto$<span class="st">&quot;406&quot;</span>@h$h</code></pre>
 <p>Now that we have estimated the utilisation distribution, we can calculate home ranges (at any percentage level you want) by intersecting it:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculate the kernel home range (in ha) for each individual, at the 50% and 80% percentage levels</span>
 kd.manual.area &lt;-<span class="st"> </span><span class="kw">kernel.area</span>(kd.manual, <span class="dt">percent=</span><span class="kw">c</span>(<span class="dv">50</span>,<span class="dv">80</span>))
