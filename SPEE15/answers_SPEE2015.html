@@ -203,13 +203,16 @@ ko&gt;.6 # pairs with higher UD overlap: birds 431 and 441 have the highest over
 <p>Following the example code, visually inspect the variagram, and fit a variogram model to determine the variogram range <code>v.fit$range</code>. The variogram range is around 150 metre, where it approaches its asymptote. To resolve spatial patterns you need to sample at a sufficiently fine spatial grid. A grid choice of 50 metre turned out ok in this study: the sampling grid was smaller than the variogram range, which is the distance where most spatial correlation between points is lost. To resolve a spatial pattern, you need to be able to resolve spatial autocorrelation. If you can’t, this indiciates the spatial pattern varies at a finer spatial scale than your sampling grid can resolve.</p>
 <p>Doubling the sampling grid in this case to 100 metre would not have been a good idea: then you are already approaching the variogram asymptote.</p>
 <ol start="12" style="list-style-type: decimal">
-<li><p>Explain why the sample variance approaches the asymptote of the variogram This follows from the defition of the variogram. The asymptote of the variogram is gives the variance between all point pairs in the sample that are separated by a large distance. Because of the large distance the points they are spatially unrelated to each other.</p></li>
-<li><p>Also make a kriging interpolation for the size of the cockles, i.e. <code>CockleLengthMean</code>. Compare the variogram for Cockle density and Cockle size. What are the differences, and can you hint at a cause for these differences, given the recruitment cycle of the Cockle?</p></li>
+<li>Explain why the sample variance approaches the asymptote of the variogram</li>
+</ol>
+<p>This follows from the defition of the variogram. The asymptote of the variogram is gives the variance between all point pairs in the sample that are separated by a large distance. Because of the large distance the points they are spatially unrelated to each other.</p>
+<ol start="13" style="list-style-type: decimal">
+<li>Also make a kriging interpolation for the size of the cockles, i.e. <code>CockleLengthMean</code>. Compare the variogram for Cockle density and Cockle size. What are the differences, and can you hint at a cause for these differences, given the recruitment cycle of the Cockle?</li>
 </ol>
 <p>For making a spatial interpolation of Cockle size, make sure to exclude all points where no cockles were found (this sampling locations have an NA (Not Available) value for cockle length):</p>
 <pre class="sourceCode r"><code class="sourceCode r">rows.with.cockles=<span class="kw">which</span>(!<span class="kw">is.na</span>(DataSampling@data$CockleLengthMean))
 DataSamplingSubset=DataSampling[rows.with.cockles,]</code></pre>
-<p>You can repeat the interpolation procedure with this Dataset. You find a variogram range for cockle size is much larger than that for cockle length. This is because different cockle beds found across the mudflats are often of the same age, because they originated from the same spatfall (Dutch: broedval). Large spatfall only occurs once every few years, producing cohorts of new Cockles that all have the same age (and size) over large areas. Because mudflats are intersected by streams and gullies, spatially separated cockle beds form. Spatial correlation in size is therefore stronger than spatial correlation in densities.</p>
+<p>You can repeat the interpolation procedure with the <code>DataSamplingSubset</code> dataset. You find a variogram range for cockle size is much larger than that for cockle length. This is because different cockle beds found across the mudflats are often of the same age, because they originated from the same spatfall (Dutch: broedval). Large spatfall only occurs once every few years, producing cohorts of new Cockles that all have the same age (and size) over large areas. Because mudflats are intersected by streams and gullies, spatially separated cockle beds form. Spatial correlation in size is therefore stronger than spatial correlation in densities.</p>
 <ol start="14" style="list-style-type: decimal">
 <li><p>(Extra) For own practice - contact me if you have specific questions</p></li>
 <li><p>Plot the equation and verify it has the shape of a Type II functional response. Why does the functional response reach a plateau? What variable determines the level of the plateau?</p></li>
@@ -225,7 +228,11 @@ DataSamplingSubset=DataSampling[rows.with.cockles,]</code></pre>
 <ol start="16" style="list-style-type: decimal">
 <li>Holling’s disk equation assumes that attack rates and handling times are independent of prey density. Are these reasonable assumptions, under which circumstances?</li>
 </ol>
-<p>This assumption is reasonable as long as * the predator attacks the prey once it is within a certain distance, irrespective of the prey density. This may not be the case when a predator has difficulty to detect a prey item when it occurs at low density, i.e. the attack rate may depend on prey density. * the prey does not behave differently at different prey densities. For example, this may happen when there is competition for hiding space when a predator approaches: at high prey density hiding places may become scarce.</p>
+<p>This assumption is reasonable as long as:</p>
+<ul>
+<li>the predator attacks the prey once it is within a certain distance, irrespective of the prey density. This may not be the case when a predator has difficulty to detect a prey item when it occurs at low density, i.e. the attack rate may depend on prey density. Such predator behaviour may lead to a type III functional response.</li>
+<li>the prey does not behave differently at different prey densities. For example, this may happen when there is competition for hiding space when a predator approaches: at high prey density hiding places may become scarce.</li>
+</ul>
 <ol start="17" style="list-style-type: decimal">
 <li>plot the capture rate that Oystercatchers can realize for several realistic size and density ranges</li>
 </ol>
@@ -291,7 +298,7 @@ n_2 = -\frac{1}{.01}\log\left(\frac{1.485}{2}\right)=30.
 <li>Predict the distribution of the 400 Oystercatchers in patch 4 for these parameters. What are the most striking differences when compared with the GPS data?</li>
 </ol>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the exponential interference constant k=5 m^2/bird</span>
-IFD.pred=<span class="kw">IFD</span>(CockleIFIR,Areas,<span class="dv">400</span>,<span class="dv">1000</span>)
+IFD.pred=<span class="kw">IFD</span>(CockleIFIR,Areas,<span class="dv">400</span>,<span class="dv">5</span>)
 <span class="co"># add the IFD prediction to the patch4.pred object:</span>
 <span class="co"># the bird densities are stored by the function IFD in the field animaldensity</span>
 patch4.pred@data$IFD.pred=IFD.pred$animaldensity
