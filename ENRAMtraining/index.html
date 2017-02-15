@@ -357,12 +357,12 @@ pvol
 <span class="co"># print information about the polar scans in this polar volume:</span>
 pvol$scans
 <span class="co"># let's extract the third scan, which was collected at 1.5 degree elevation:</span>
-pscan =<span class="st"> </span>vol.rain$scans[[<span class="dv">3</span>]]
+pscan =<span class="st"> </span>pvol$scans[[<span class="dv">3</span>]]
 <span class="co"># print some information about this scan:</span>
 pscan
 <span class="co"># before we can plot the scan, we need to project it on a Cartesian grid,</span>
 <span class="co"># i.e. we need to make a Plan Position Indicator (PPI)</span>
-my_ppi =<span class="st"> </span><span class="kw">ppi</span>(scan.rain)
+my_ppi =<span class="st"> </span><span class="kw">ppi</span>(pscan)
 <span class="co"># print some information about this ppi:</span>
 my_ppi
 <span class="co"># you can see we projected it on a 500 metre grid.</span>
