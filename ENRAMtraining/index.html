@@ -382,7 +382,7 @@ my_ppi
 <p>Before continueing with the next example, first download <a href="https://www.dropbox.com/s/8cxsmvwphof5c5k/20150927.zip?dl=0">these volume files</a> from Dropbox. Unzip the file and put the newly extracted files in your working directory.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load the file names of the files you just downloaded</span>
 <span class="co"># make sure the h5 files you just downloaded are in your working directory.</span>
-files=<span class="kw">list.files</span>(<span class="dt">pattern=</span><span class="st">&quot;seang_pvol_20150927&quot;</span>,<span class="dt">full.names=</span><span class="ot">TRUE</span>)
+files=<span class="kw">list.files</span>(<span class="kw">paste</span>(HOME, <span class="st">&quot;20150927&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>), <span class="dt">pattern=</span><span class="st">&quot;seang_pvol_20150927&quot;</span>,<span class="dt">full.names=</span><span class="ot">TRUE</span>)
 <span class="co"># print the file names</span>
 files
 <span class="co"># we will plot the file at 4:30 UTC, when the first emersion is present, but the second not yet (check whether you came to approximately the same answer in the previous exercise)</span>
