@@ -348,9 +348,8 @@ vintegrated.ts =<span class="st"> </span><span class="kw">vintegrate</span>(ts)
 <div id="relating-profile-data-to-underlying-polar-volume-data" class="section level2">
 <h2>7. Relating profile data to underlying polar volume data</h2>
 <p>In this section we will inspect a migration event with combined precipitation and biological scattering in more detail, by examining polar volume data.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># download the polar volume</span>
-<span class="kw">download.file</span>(<span class="st">&quot;https://github.com/adokter/ENRAM-training/raw/master/data/seang_pvol_20150920200000.h5&quot;</span>,<span class="dt">destfile=</span><span class="st">&quot;seang_pvol_20150920200000.h5&quot;</span>)
-<span class="co"># load the polar volume data</span>
+<p>Before continueing with the next example, first download <a href="https://www.dropbox.com/s/8i2ijttuf9lx1he/seang_pvol_20150920200000.h5?dl=0">this volume file</a> from Dropbox. Unzip the file and put the file in your working directory.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load the polar volume data from the h5 file you just downloaded</span>
 pvol=<span class="kw">read.pvol</span>(<span class="st">&quot;seang_pvol_20150920200000.h5&quot;</span>)
 <span class="co"># print some information about the polar volume</span>
 pvol
@@ -380,11 +379,9 @@ my_ppi
 <li>Make a vertical profile plot of the diurnal migration from 27 Sep 2015 4:00 UTC to 7:00 UTC (see section 4).</li>
 </ol>
 <p>It should be clear from your last two figures that there is peak of nocturnal migration, followed by a peak of diurnal migration. The diurnal peak shows two subsequent departures of birds that coincide with sunrise. We are going to look deeper into the polar volume data from which the vertical profiles were calculated, to see what these two departures at sunrise might be.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># download the volume files</span>
-<span class="kw">download.file</span>(<span class="st">&quot;https://www.dropbox.com/s/8cxsmvwphof5c5k/20150927.zip?dl=1&quot;</span>,<span class="st">&quot;20150927.zip&quot;</span>)
-<span class="co"># extract the zip file</span>
-<span class="kw">unzip</span>(<span class="st">&quot;20150927.zip&quot;</span>)
-<span class="co"># load the file names</span>
+<p>Before continueing with the next example, first download <a href="https://www.dropbox.com/s/8cxsmvwphof5c5k/20150927.zip?dl=0">these volume files</a> from Dropbox. Unzip the file and put the newly extracted files in your working directory.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load the file names of the files you just downloaded</span>
+<span class="co"># make sure the h5 files you just downloaded are in your working directory.</span>
 files=<span class="kw">list.files</span>(<span class="dt">pattern=</span><span class="st">&quot;seang_pvol_20150927&quot;</span>,<span class="dt">full.names=</span><span class="ot">TRUE</span>)
 <span class="co"># print the file names</span>
 files
