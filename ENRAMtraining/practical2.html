@@ -467,7 +467,7 @@ vp
 <span class="co"># similar to the profile files stored in the ENRAM repository</span>
 <span class="co"># </span>
 <span class="co"># let's make an output file (by replacing the substring 'pvol' into 'vp')</span>
-file.out=<span class="kw">gsub</span>(<span class="st">&quot;pvol&quot;</span>,<span class="st">&quot;vp&quot;</span>,file)
+file.out=<span class="kw">gsub</span>(<span class="st">&quot;pvol&quot;</span>,<span class="st">&quot;vp&quot;</span>,file.in)
 <span class="co"># print the output file name to which we will write:</span>
 file.out
 <span class="co"># finally, run vol2bird; this generates an output file as specified in file.out</span>
