@@ -28,10 +28,9 @@ share: false
 ##### Work Addresses:
 
 Dr. Adriaan M. Dokter  
-[Netherlands Institute of Ecology (NIOO-KNAW)][1]  
-PO Box 50, 6700 AB Wageningen, The Netherlands  
-Tel: +31 (0)31 747 3460
-
+[Information Science][5]
+[Cornell Lab of Ornithology][6]
+Cornell University
 
 Dr. Adriaan M. Dokter  
 [Computational Geo-Ecology][2]  
@@ -47,5 +46,6 @@ Fax: +31-205257431
 [2]: http://ibed.uva.nl/research/research-groups/content/computational-geo-ecology/computational-geo-ecology.html  "Computational Geo-Ecology"
 [3]: http://ibed.uva.nl/        "Institute for Biodiversity and Ecosystem Dynamics"
 [4]: http://uva.nl/        "University of Amsterdam"
-
+[5]: http://www.birds.cornell.edu/page.aspx?pid=1675
+[6]: http://www.birds.cornell.edu
 
