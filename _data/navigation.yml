@@ -10,11 +10,11 @@
   excerpt: "Current Projects"
   image:
 
-- title: CV
-  url: /DokterCV.pdf
-  excerpt: "Curriculum Vitae"
-  image: 400x250.gif
-
+#- title: CV
+#  url: /DokterCV.pdf
+#  excerpt: "Curriculum Vitae"
+#  image: 400x250.gif
+#
 - title: Publications
   url: /publications/
   excerpt: "Publications Adriaan Dokter"
