@@ -12,31 +12,14 @@ ads: false
 share: false
 ---
 
-##### Send an email:
-
-<form action="//formspree.io/adriaandokter@gmail.com" role="form" method="POST">
-    <input type="text" name="name" placeholder="Your name">
-    <input type="email" name="_replyto" placeholder="Your email address">
-    <input type="hidden" name="_subject" value="New submission!" />
-    <input type="text" name="_gotcha" style="display:none" />
-    <textarea name="message" rows="5" placeholder="Your message"></textarea>
-    <input type="submit" value="Send">
-</form>
-
-!["it's me"](/images/AdriaanBrent201505.jpg)
 
 ##### Work Addresses:
 
 Dr. Adriaan M. Dokter  
-
 [Information Science][1]
-
 [Cornell Lab of Ornithology][2]
-
 Cornell University
-
-<a href="mailto:{{ amd427@cornell.edu | encode_email }}" title="Contact me">Contact me</a>
-
+<a href="mailto:{{ amd427@cornell.edu | encode_email }}" title="Email me">Contact me</a>
 
 Dr. Adriaan M. Dokter  
 [Computational Geo-Ecology][3]  
@@ -47,6 +30,8 @@ postal address:
 Postbus 94216, 1090 GE Amsterdam, The Netherlands  
 Tel: +31-205257456 (+31-205257451 secr)  
 Fax: +31-205257431  
+
+!["it's me"](/images/AdriaanBrent201505.jpg)
 
 [1]: http://www.birds.cornell.edu/page.aspx?pid=1675
 [2]: http://www.birds.cornell.edu
