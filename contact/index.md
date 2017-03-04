@@ -15,11 +15,11 @@ share: false
 
 ##### Work Addresses:
 
-Dr. Adriaan M. Dokter  
-[Information Science][1]
-[Cornell Lab of Ornithology][2]
+Dr. Adriaan M. Dokter<br /> 
+[Information Science][1]<br />
+[Cornell Lab of Ornithology][2]<br />
 Cornell University
-<a href="mailto:{{ amd427@cornell.edu | encode_email }}" title="Email me">Contact me</a>
+<a href="mailto:{{ 'amd427@cornell.edu' | encode_email }}" title="Email me">Contact me</a>
 
 Dr. Adriaan M. Dokter  
 [Computational Geo-Ecology][3]  
