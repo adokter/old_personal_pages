@@ -10,6 +10,8 @@ image:
   thumb: apple-touch-icon-precomposed.png 
 ads: false 
 share: false
+gems:
+- jekyll-email-protect
 ---
 
 
