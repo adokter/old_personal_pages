@@ -28,13 +28,15 @@ share: false
 ##### Work Addresses:
 
 Dr. Adriaan M. Dokter  
+
 [Information Science][1]
+
 [Cornell Lab of Ornithology][2]
+
 Cornell University
-Email: <SCRIPT type='text/javascript'>a='amd427'; b='cornell.edu'
-document.write('<A hre'+'f="mai'+'lto:'+a+'@'+b+'">');
-document.write(a+'@'+b+'</a>');
-</SCRIPT>
+
+<a href="mailto:{{ amd427@cornell.edu | encode_email }}" title="Contact me">Contact me</a>
+
 
 Dr. Adriaan M. Dokter  
 [Computational Geo-Ecology][3]  
