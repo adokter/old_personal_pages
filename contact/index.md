@@ -21,7 +21,7 @@ Dr. Adriaan M. Dokter<br />
 Cornell University
 <a href="mailto:{{ 'amd427@cornell.edu' | encode_email }}" title="Email me">Email me</a>
 
-[Computational Geo-Ecology][3] (guest researcher)
+[Computational Geo-Ecology][3] (guest researcher)<br />
 [Institute of Biodiversity and Ecosystem Dynamics][4]  
 [University of Amsterdam][5]  
 Science Park 904, 1098 XH Amsterdam, The Netherlands  
