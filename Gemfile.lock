@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.5.0)
+    addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
     blankslate (2.1.2.4)
     classifier-reborn (2.1.0)
@@ -12,10 +12,11 @@ GEM
     coffee-script-source (1.11.1)
     colorator (0.1)
     execjs (2.7.0)
-    faraday (0.11.0)
+    faraday (0.12.1)
       multipart-post (>= 1.2, < 3)
     fast-stemmer (1.0.2)
     ffi (1.9.18)
+    ffi (1.9.18-x64-mingw32)
     jekyll (2.4.0)
       classifier-reborn (~> 2.0)
       colorator (~> 0.1)
@@ -50,7 +51,7 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.7)
     mercenary (0.3.6)
     multipart-post (2.0.0)
-    octokit (4.6.2)
+    octokit (4.7.0)
       sawyer (~> 0.8.0, >= 0.5.3)
     octopress (3.0.12.pre.1)
       jekyll (>= 2.0)
@@ -78,14 +79,14 @@ GEM
       ffi (>= 0.5.0)
     redcarpet (3.4.0)
     safe_yaml (1.0.4)
-    sass (3.4.23)
+    sass (3.4.24)
     sawyer (0.8.1)
       addressable (>= 2.3.5, < 2.6)
       faraday (~> 0.8, < 1.0)
     titlecase (0.1.1)
     toml (0.1.2)
       parslet (~> 1.5.0)
-    yajl-ruby (1.2.1)
+    yajl-ruby (1.2.2)
 
 PLATFORMS
   ruby
@@ -97,3 +98,6 @@ DEPENDENCIES
   jekyll-sitemap (~> 0.6.1)
   octopress (~> 3.0.0.rc.12)
   sass
+
+BUNDLED WITH
+   1.15.1
