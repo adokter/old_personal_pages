@@ -185,7 +185,7 @@ HOME=<span class="st">&quot;your/personal/working/directory/&quot;</span>
 <span class="co"># we first test whether R can communicate with Docker:</span>
 <span class="kw">checkDocker</span>()</code></pre></div>
 <p>If you get a “Hello from Docker!” welcome message, everything is working.</p>
-<p>If you did <strong>not</strong> manage to install Docker, you will not be able to load NEXRAD data into R, but for those people European radar data is provided that can be loaded without Docker.</p>
+<p>If you did <strong>not</strong> manage to install Docker, you will not be able to load NEXRAD data into R at this time, but you will be able to continue the exercises with European radar data that can be loaded without Docker.</p>
 </div>
 <div id="downloading-and-loading-polar-volume-data" class="section level2">
 <h2>2. Downloading and loading polar volume data</h2>
@@ -199,13 +199,13 @@ HOME=<span class="st">&quot;your/personal/working/directory/&quot;</span>
 </div>
 <div id="the-structure-of-polar-volumes" class="section level2">
 <h2>3. The structure of polar volumes</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># bioRad package includes an example volume file</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the bioRad package aksi includes an example radar volume file, that we will inspect first</span>
 <span class="co"># first locate this example file:</span>
-pvol &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;volume.h5&quot;</span>, <span class="dt">package=</span><span class="st">&quot;bioRad&quot;</span>)
+pvol.path &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;volume.h5&quot;</span>, <span class="dt">package=</span><span class="st">&quot;bioRad&quot;</span>)
 <span class="co"># print the local path of the volume file:</span>
-pvol
+pvol.path
 <span class="co"># load the file into R:</span>
-vol=<span class="kw">read.pvol</span>(pvol)
+pvol=<span class="kw">read.pvol</span>(pvol)
 ## print some information about the polar volume
 pvol
 <span class="co"># print information about the polar scans contained in this polar volume:</span>
@@ -233,37 +233,26 @@ my_ppi
 <span class="co"># plot the reflectivity factor image:</span>
 <span class="kw">plot</span>(my_ppi, <span class="dt">param=</span><span class="st">&quot;DBZH&quot;</span>)</code></pre></div>
 <ol style="list-style-type: decimal">
-<li><p>The European radar file contains convective precipitation, characterised by localized but intense thunderstorms, as well as biological scattering. Make also a ppi plot of the radial velocity. How does the texture of the radial velocity of the precipitive areas differ from the areas with biological scattering?</p></li>
-<li><p>Estimate the absolute difference in ground speed of the precipitation and the ground speed of the biological scatterers by visually inspecting the radial velocity plot. Are the biological scatterers birds or insects? Why?</p></li>
+<li><p>The European radar file contains convective precipitation, characterised by localized but intense thunderstorms, as well as biological scattering. Make also a ppi plot of the radial velocity. Verify how the texture of the radial velocity of the precipitive areas differs from the areas with biological scattering.</p></li>
+<li><p>Based on the radial velocity image, are the biological scatterers birds or insects? Why?</p></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load the file names of the files you just downloaded</span>
+<p>Navigate to <a href="https://www.dropbox.com/sh/8dl30htd9zxdbx3/AAAMOHk4_UlCsXOYb6LDFONOa?dl=0" class="uri">https://www.dropbox.com/sh/8dl30htd9zxdbx3/AAAMOHk4_UlCsXOYb6LDFONOa?dl=0</a> and download a set of European radar volume files, <code>volumes.zip</code>. Put the file in your working directory and unzip it.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># first we load the file names of the files you just downloaded in a list</span>
 <span class="co"># make sure the h5 files you just downloaded are in your working directory.</span>
-files=<span class="kw">list.files</span>(<span class="kw">paste</span>(HOME, <span class="st">&quot;20150927&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>), <span class="dt">pattern=</span><span class="st">&quot;seang_pvol_20150927&quot;</span>,<span class="dt">full.names=</span><span class="ot">TRUE</span>)
+files=<span class="kw">list.files</span>(<span class="kw">paste</span>(HOME, <span class="st">&quot;/20150927&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>), <span class="dt">pattern=</span><span class="st">&quot;seang_pvol_20150927&quot;</span>,<span class="dt">full.names=</span><span class="ot">TRUE</span>)
 <span class="co"># print the file names</span>
 files
 <span class="co"># we will plot the file at 4:30 UTC first, which is the fourth one:</span>
 pvol=<span class="kw">read.pvol</span>(files[<span class="dv">4</span>])
-<span class="co"># print some information about the polar volume</span>
-pvol
-<span class="co"># print information about the polar scans in this polar volume:</span>
-pvol$scans
 <span class="co"># let's extract the 2 degree elevation scan, in this case the fifth scan</span>
 pscan =<span class="st"> </span>pvol$scans[[<span class="dv">5</span>]]
-<span class="co"># print some information about this scan:</span>
-pscan
-<span class="co"># before we can plot the scan, we need to project it on a Cartesian grid,</span>
-<span class="co"># i.e. we need to make a Plan Position Indicator (PPI)</span>
-my_ppi =<span class="st"> </span><span class="kw">ppi</span>(pscan)
-<span class="co"># print some information about this ppi:</span>
-my_ppi
-<span class="co"># you can see we projected it on a 500 metre grid.</span>
-<span class="co">#</span>
-<span class="co"># Now we are ready to plot the ppi</span>
+<span class="co"># project it as a Plan Position Indicator (PPI)</span>
+my_ppi =<span class="st"> </span><span class="kw">ppi</span>(pscan,<span class="dt">cellsize=</span><span class="dv">200</span>,<span class="dt">range.max=</span><span class="dv">25000</span>)
 <span class="co"># plot the reflectivity factor (we adjust the plotting scale to -20 to 15 dBZ):</span>
 <span class="kw">plot</span>(my_ppi, <span class="dt">param=</span><span class="st">&quot;DBZH&quot;</span>, <span class="dt">zlim=</span><span class="kw">c</span>(-<span class="dv">20</span>,<span class="dv">15</span>))</code></pre></div>
 <ol style="list-style-type: decimal">
-<li><p>Check the manual of the ppi function to see how you can change the projection (argument <code>cellsize</code>) and the maximum distance from the radar up to where to plot data (argument <code>range.max</code>). Make a ppi for the lowest elevation scan for a around 5:30 UTC, up to 150 km distance from the radar, on a 2x2 km resolution grid. Make a plot for the radial velocity (VRAD).</p></li>
-<li><p>(for those with working Docker installation) Make reflectivity plots for both the European polar volume file and one of your selected US polar volume files. By how many dBZ differ the areas of bird migration on both radars. Which radar shows the higher aerial bird density, and by how much (order of magnitude estimate is good enough)? Assume birds are of similar size, but take into account the different radar cross sections at S-band and C-band.</p></li>
+<li><p>Check the manual of the ppi function to see how you can change the projection (argument <code>cellsize</code>) and the maximum distance from the radar up to where to plot data (argument <code>range.max</code>). Make a ppi for the lowest elevation scan at 4:30 UTC, up to 20 km distance from the radar, on a 200x200 m resolution grid. Make a plot for the radial velocity (VRAD).</p></li>
+<li><p>(for those with working Docker installation) Make a PPI plot for reflectivity one of your selected NEXRAD polar volume files. Verify that reflectivity factors during bird migration at S-band (NEXRAD radars US) are much higher than at C-band (most European radars).</p></li>
 </ol>
 </div>
 <div id="overlaying-radar-scans-on-maps" class="section level2">
@@ -276,30 +265,41 @@ satelliteImage=<span class="kw">basemap</span>(my_ppi,<span class="dt">maptype=<
 <ol style="list-style-type: decimal">
 <li>Plot the same ppi but now using a cartographic map instead of satellite maps as baselayer. See help of bioRad’s <code>map</code> function for available types of basemaps.</li>
 </ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Note that in R, spatial data is usually contained in class objects of packag 'sp'</span>
+<span class="co"># bioRad also uses these objects in the background, and they can be extracted if you want to.</span>
+<span class="co"># The spatial data is stored in the data slot, as in:</span>
+my_spatialgrid=my_ppi$data
+<span class="co"># you can use the sp package to save the spatial data to all kinds GIS formats, for example ArcGis:</span>
+<span class="kw">library</span>(sp)
+<span class="kw">write.asciigrid</span>(my_spatialgrid,<span class="st">&quot;PPI_in_arcgis_format.asc&quot;</span>)</code></pre></div>
 </div>
 <div id="plotting-a-series-of-scans-for-multiple-volumes" class="section level2">
 <h2>6. Plotting a series of scans for multiple volumes</h2>
-<p>Before continueing with the next example, first download a set of polar volumes for a Swedish radar, file <code>volumes.zip</code>. at <a href="https://www.dropbox.com/sh/8dl30htd9zxdbx3/AAAMOHk4_UlCsXOYb6LDFONOa?dl=0" class="uri">https://www.dropbox.com/sh/8dl30htd9zxdbx3/AAAMOHk4_UlCsXOYb6LDFONOa?dl=0</a>. Unzip the file and put the volumes into a directory.</p>
+<p>In this section we will make images for all the polar volumes you downloaded.</p>
+<p>The Swedish case includes the transition from nocturnal migration into the start of daytime migration, when several cohorts of daytime migrants are departing. There is a lot to be seen in this fairly complex case. Sunrise was at 04:10 UTC, which is when the nocturnal migrants have stopped, and daytime migrants start taking off.</p>
 <ol style="list-style-type: decimal">
-<li>Make a series of ppi maps for the 2.5 degree polar scan for all the volume files you downloaded for this migration event, and save them to disk. If you feel confident with R - use below example code to generate and save the images automatically.</li>
+<li>Make ppi maps for the 2.5 degree polar scan for all the volume files you downloaded for this migration event, and save them to disk. If you feel confident with R - use below example code, which make use of a for-loop by which multiple images can be generated and saved automatically.</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># let's store all the polar volumes we want to plot in a vector:</span>
 <span class="co"># first, get all the files with 'seang_pvol_20150927'</span>
-files=<span class="kw">list.files</span>(<span class="dt">pattern=</span><span class="st">&quot;seang_pvol_20150927&quot;</span>,<span class="dt">full.names=</span><span class="ot">TRUE</span>)
+files=<span class="kw">list.files</span>(<span class="kw">paste</span>(HOME, <span class="st">&quot;/20150927&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>), <span class="dt">pattern=</span><span class="st">&quot;seang_pvol_20150927&quot;</span>,<span class="dt">full.names=</span><span class="ot">TRUE</span>)
 <span class="co"># second, make sure we only use the files that end with 'h5', so hdf5 files only</span>
 files=files[<span class="kw">grep</span>(<span class="st">&quot;h5$&quot;</span>,files)]
 <span class="co"># load the ggplot2 library, because we will use its ggsave function later on to save images</span>
 <span class="kw">library</span>(ggplot2)
 <span class="co"># we will use a for-loop to process the images one by one</span>
 <span class="co"># this simple loop prints the contents of variable 'i' iterating over a numeric vector</span>
-for (i in <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">8</span>)){
+for (i in <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)){
   <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;in this iteration variable i equals&quot;</span>,i))
 }
+<span class="co"># let's regenerate the satellite image basemap</span>
+vol=<span class="kw">read.pvol</span>(files[<span class="dv">1</span>])
+satelliteImage=<span class="kw">basemap</span>(<span class="kw">ppi</span>(vol$scans[[<span class="dv">3</span>]]),<span class="dt">maptype=</span><span class="st">&quot;satellite&quot;</span>)
 <span class="co"># now let's make a more advanced for-loop that makes and save the images one by one:</span>
 for (file in files){
   <span class="co"># 1) read the polar volume </span>
   vol=<span class="kw">read.pvol</span>(file)
-  <span class="co"># 2) extract the first scan</span>
+  <span class="co"># 2) extract the fifth scan (which is at 2 degree in this case)</span>
   scan=vol$scans[[<span class="dv">5</span>]]
   <span class="co"># 3) make a ppi</span>
   ppi =<span class="st"> </span><span class="kw">ppi</span>(scan)
@@ -314,7 +314,7 @@ for (file in files){
   <span class="co"># after ending up here, the code will be executed again from the start for the next image</span>
 }</code></pre></div>
 <ol style="list-style-type: decimal">
-<li>Cycle through the images and describe where you see birds emerging. Do all birds depart synchronously, or are there different cohorts of birds with different timings in different regions?</li>
+<li>Cycle through the images and inspect where you see birds emerging. Not all daytime migrants depart synchronously. Explain what you see in the series of images in terms of the timing of departure and flight altitudes of the daytime migrants.</li>
 </ol>
 <p>We will continue with this case on Thursday, and work on the quantification of bird densities, speeds and altitudes from these images.</p>
 </div>
