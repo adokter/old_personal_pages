@@ -151,7 +151,7 @@ $(document).ready(function () {
 
 <div id="p2-analysis-and-visualisation-of-vertical-bird-profiles" class="section level1">
 <h1>P2: Analysis and visualisation of vertical bird profiles</h1>
-<p>In this practical you will learn to compute, interpret and analyze vertical profile data of birds (VPBs). A VPB consists of the bird density, speed and directions at different altitudes at the location of a single radar. It is typically calculated for all data within a cilinder with a 25 km radius around the radar, i.e. only containing data at relatively short distances, where the radar beam is still sufficiently narrow to resolve altitude information.</p>
+<p>In this practical you will learn to compute, interpret and analyze vertical profiles of birds (VPBs). A VPB consists of the bird density, speed and directions at different altitudes at the location of a single radar. It is typically calculated for all data within a cilinder with a 25 km radius around the radar, i.e. only containing data at relatively short distances, where the radar beam is still sufficiently narrow to resolve altitude information.</p>
 <div id="preparations" class="section level2">
 <h2>1. Preparations</h2>
 <p>Start again by making a new directory on your local machine that you will use for this practical</p>
@@ -180,7 +180,7 @@ HOME=<span class="st">&quot;your/personal/working/directory/&quot;</span>
 files=<span class="kw">list.files</span>(<span class="dt">pattern=</span><span class="st">&quot;seang_pvol_20150927&quot;</span>,<span class="dt">full.names=</span><span class="ot">TRUE</span>)
 <span class="co"># second, make sure we only use the files that end with 'h5', so hdf5 files with a h5 extension only</span>
 files=files[<span class="kw">grep</span>(<span class="st">&quot;h5$&quot;</span>,files)]
-<span class="co"># let's process the first file</span>
+<span class="co"># let's process the first file, which has the name 'seang_pvol_20150927T030000Z.h5'</span>
 file.in=files[<span class="dv">1</span>]
 <span class="co"># run vol2bird</span>
 vp=<span class="kw">vol2bird</span>(file.in)
@@ -195,7 +195,7 @@ file.out=<span class="kw">gsub</span>(<span class="st">&quot;pvol&quot;</span>,<
 file.out
 <span class="co"># finally, run vol2bird; this generates an output file as specified in file.out</span>
 <span class="kw">vol2bird</span>(file.in,file.out)
-<span class="co"># your work directory should now contain a new file 'seang_vp_20150927T055000Z.h5'</span>
+<span class="co"># your work directory should now contain a new file 'seang_vp_20150927T030000Z.h5'</span>
 <span class="co"># check that we can read this file, and retrieve the vertical profile from it:</span>
 vp=<span class="kw">readvp</span>(file.out)</code></pre></div>
 </div>
