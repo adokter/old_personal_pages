@@ -206,7 +206,7 @@ vp=<span class="kw">readvp</span>(file.out)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># unzip the profiles.zip file, either by clicking the file or the command below; after unzipping you should have a folder '2015' in your working directory with 4 days of profile data (20,21,26 and 27 September 2015).</span>
 <span class="kw">unzip</span>(<span class="st">&quot;./profiles.zip&quot;</span>)
 <span class="co"># load all the filenames in the new 2015/09 subfolder in your working directory</span>
-vp_paths=<span class="kw">dir</span>(<span class="st">&quot;./2015/09&quot;</span>, <span class="dt">recursive=</span><span class="ot">TRUE</span>)
+vp_paths=<span class="kw">dir</span>(<span class="st">&quot;./2015/09&quot;</span>, <span class="dt">recursive=</span><span class="ot">TRUE</span>,<span class="dt">full.names=</span><span class="ot">TRUE</span>)
 <span class="co"># let's make a subselection of files: only those that have '20150926' or '20150927' in the filename, i.e. profiles from 26 sep 2015 to 27 sep 2015.</span>
 vp_paths_sep26=vp_paths[<span class="kw">grep</span>(<span class="st">&quot;20150926&quot;</span>,vp_paths)]
 vp_paths_sep27=vp_paths[<span class="kw">grep</span>(<span class="st">&quot;20150927&quot;</span>,vp_paths)]
