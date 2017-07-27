@@ -151,16 +151,34 @@ $(document).ready(function () {
 
 <div id="p2-analysis-and-visualisation-of-vertical-bird-profiles" class="section level1">
 <h1>P2: Analysis and visualisation of vertical bird profiles</h1>
+<p>In this practical you will learn to compute, interpret and analyze vertical profile data of birds (VPBs). A VPB consists of the bird density, speed and directions at different altitudes at the location of a single radar. It is typically calculated for all data within a cilinder with a 25 km radius around the radar, i.e. only containing data at relatively short distances, where the radar beam is still sufficiently narrow to resolve altitude information.</p>
+<div id="preparations" class="section level2">
+<h2>1. Preparations</h2>
+<p>Start again by making a new directory on your local machine that you will use for this practical</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># make a new local directory on your machine where to download data for this practical</span>
+<span class="co"># replace the string below with the path of that directory.</span>
+HOME=<span class="st">&quot;your/personal/working/directory/&quot;</span>
+<span class="co"># check that the directory exists. If the next statement evaluates to FALSE, something went wrong: the directory does not exist or you didn't specify its path correctly</span>
+<span class="kw">file.exists</span>(HOME)
+<span class="co"># we will make HOME our work directory, the default folder in which R will look</span>
+<span class="co"># for files, and where it will output newly generated files.</span>
+<span class="kw">setwd</span>(HOME)
+<span class="co"># Finally, we set the local time zone to UTC, so all plotted time axes will be in UTC</span>
+<span class="kw">Sys.setenv</span>(<span class="dt">TZ=</span><span class="st">&quot;UTC&quot;</span>)</code></pre></div>
+<p>Your R session is now properly set up</p>
+</div>
 <div id="processing-polar-volume-data-into-vertical-profiles-vol2bird-algorithm" class="section level2">
-<h2>1. Processing polar volume data into vertical profiles: vol2bird algorithm</h2>
+<h2>2. Processing polar volume data into vertical profiles: vol2bird algorithm</h2>
 <p>The following steps take you through the process applying the vol2bird algorithm yourself. You need a working installation of Docker (linux / mac) or Docker for Windows (<strong>not</strong> Docker Toolbox, this is an older implementation of Docker for Windows operating systems that is not supported).</p>
+<p>We will generate vertical profiles with the automated algorithm vol2bird (<a href="https://github.com/adokter/vol2bird" class="uri">https://github.com/adokter/vol2bird</a>), which is included in the bioRad package</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># start your local Docker installation</span>
 <span class="co"># we first test whether R can communicate with Docker:</span>
 <span class="kw">checkDocker</span>()</code></pre></div>
 <p>If you get a “Hello from Docker!” welcome message, everything is working and you can start processing</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># first, get all the files with 'seang_pvol_20150927'</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># We will continue with the Swedish data you downloaded during the first practical.</span>
+<span class="co"># first, make a list containing all the polar volume files starting with 'seang_pvol_20150927'</span>
 files=<span class="kw">list.files</span>(<span class="dt">pattern=</span><span class="st">&quot;seang_pvol_20150927&quot;</span>,<span class="dt">full.names=</span><span class="ot">TRUE</span>)
-<span class="co"># second, make sure we only use the files that end with 'h5', so hdf5 files only</span>
+<span class="co"># second, make sure we only use the files that end with 'h5', so hdf5 files with a h5 extension only</span>
 files=files[<span class="kw">grep</span>(<span class="st">&quot;h5$&quot;</span>,files)]
 <span class="co"># let's process the first file</span>
 file.in=files[<span class="dv">1</span>]
@@ -168,24 +186,46 @@ file.in=files[<span class="dv">1</span>]
 vp=<span class="kw">vol2bird</span>(file.in)
 <span class="co"># vp is now a 'vp' profile object, that you can examine as in the previous exercises</span>
 vp
-<span class="co"># alternatively, you may also store the profile as a hdf5 profile,</span>
-<span class="co"># similar to the profile files stored in the ENRAM repository</span>
-<span class="co"># </span>
-<span class="co"># let's make an output file (by replacing the substring 'pvol' into 'vp')</span>
+<span class="co">#</span>
+<span class="co"># alternatively, you may also store the profile as a hdf5 file, which is what we will do next:</span>
+<span class="co"># let's first define the name of the output file (we replace the substring 'pvol' into 'vp')</span>
 file.out=<span class="kw">gsub</span>(<span class="st">&quot;pvol&quot;</span>,<span class="st">&quot;vp&quot;</span>,file.in)
-<span class="co"># print the output file name to which we will write:</span>
+<span class="co"># print the newly generated output file name to which we will write:</span>
+<span class="co"># note that this is only a string, you can give it any other name if you want to</span>
 file.out
 <span class="co"># finally, run vol2bird; this generates an output file as specified in file.out</span>
 <span class="kw">vol2bird</span>(file.in,file.out)
 <span class="co"># your work directory should now contain a new file 'seang_vp_20150927T055000Z.h5'</span>
-<span class="co"># check that we can read this file:</span>
+<span class="co"># check that we can read this file, and retrieve the vertical profile from it:</span>
 vp=<span class="kw">readvp</span>(file.out)</code></pre></div>
 </div>
+<div id="loading-processed-vertical-profiles" class="section level2">
+<h2>3. Loading processed vertical profiles</h2>
+<p>To save some time, we will continue with some pre-processed vertical profiles generated for the case study you worked on yesterday (Angelholm radar in Sweden).</p>
+<p>Navigate to <a href="https://www.dropbox.com/sh/8dl30htd9zxdbx3/AAAMOHk4_UlCsXOYb6LDFONOa?dl=0" class="uri">https://www.dropbox.com/sh/8dl30htd9zxdbx3/AAAMOHk4_UlCsXOYb6LDFONOa?dl=0</a> and download the processed profiles, <code>profiles.zip</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># unzip the profiles.zip file, either by clicking the file or the command below; after unzipping you should have a folder '2015' in your working directory with 4 days of profile data (20,21,26 and 27 September 2015).</span>
+<span class="kw">unzip</span>(<span class="st">&quot;./profiles.zip&quot;</span>)
+<span class="co"># load all the filenames in the new 2015/09 subfolder in your working directory</span>
+vp_paths=<span class="kw">dir</span>(<span class="st">&quot;./2015/09&quot;</span>, <span class="dt">recursive=</span><span class="ot">TRUE</span>)
+<span class="co"># let's make a subselection of files: only those that have '20150926' or '20150927' in the filename, i.e. profiles from 26 sep 2015 to 27 sep 2015.</span>
+vp_paths_sep26=vp_paths[<span class="kw">grep</span>(<span class="st">&quot;20150926&quot;</span>,vp_paths)]
+vp_paths_sep27=vp_paths[<span class="kw">grep</span>(<span class="st">&quot;20150927&quot;</span>,vp_paths)]
+<span class="co"># paste the two lists together:</span>
+vp_paths_sep2627=<span class="kw">c</span>(vp_paths_sep26,vp_paths_sep27)
+<span class="co"># read these vertical profiles (hdf5 files) into R (may take 1-2 minutes to load)</span>
+vplist=<span class="kw">readvp.list</span>(vp_paths_sep2627)
+<span class="co"># print some information on the vplist object. It should contain 576 profiles </span>
+vplist
+<span class="co"># save the object, which allows you to load the data more quickly next time</span>
+<span class="kw">save</span>(vplist,<span class="dt">file=</span><span class="st">&quot;vplist_sep2627.RData&quot;</span>)
+<span class="co"># you can restore the vplist object at any time as follows:</span>
+<span class="kw">load</span>(<span class="st">&quot;vplist_sep2627.RData&quot;</span>)</code></pre></div>
+</div>
 <div id="inspecting-single-vertical-profiles" class="section level2">
-<h2>2. Inspecting single vertical profiles</h2>
-<p>JUST USE VP IF 0 DIDNT WORK. Now that you have loaded a list of vertical profiles, we can start exploring them. We will start with plotting and inspecting single vertical profiles, i.e. a single profile from the vplist object you have just loaded.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># let's extract a profile from the list, in this example the 250'st profile:</span>
-vp=vplist[<span class="dv">250</span>]
+<h2>4. Inspecting single vertical profiles</h2>
+<p>Now that you have loaded a list of vertical profiles, we can start exploring them. We will start with plotting and inspecting single vertical profiles, i.e. a single profile from the vplist object you have just loaded.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># let's extract a profile from the list, in this example the 25th profile:</span>
+vp=vplist[<span class="dv">25</span>]
 <span class="co"># print some info for this profile to the console</span>
 vp
 <span class="co"># test whether this profile was collected at day time:</span>
@@ -198,46 +238,23 @@ vp
 <pre><code>eta = (radar-wavelength dependent constant) * 10^(dbz/10)</code></pre>
 <p>So <code>eta</code> and <code>dbz</code> are closely related, the main difference is that reflectivity factors are logarithmic, and reflectivities linear.</p>
 <p>The reflectivity factor <code>dbz</code> is the quantity used by most meteorologist. It has the useful property that at different radar wavelengths (e.g. S-band versus C-band) the same amount of precipitation shows up at equal reflectivity factors. The same holds for insects, as well as any other target that is much smaller than the radar wavelength (S-band = 10 cm, C-band = 5 cm), the so-called Rayleigh-scattering limit</p>
-<p>In the case of birds we are outside the Rayleigh limit, because birds are of similar size as the radar wavelength. In this case the reflectivity quantity <code>eta</code> is more similar between S-band and C-band (though might be a little different)</p>
+<p>In the case of birds we are outside the Rayleigh limit, because birds are of similar size as the radar wavelength. In this case the reflectivity <code>eta</code> is more similar between S-band and C-band (though might be a little different). <code>eta</code> is also more directly related to the density of birds, since <code>eta</code> can be expressed as (bird density) x (radar cross section per bird). For these two reasons, for weather radar ornithologists reflectivity <code>eta</code> is the more conventional unit (instead of reflectivity factor in dBZ).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot the vertical profile, in terms of bird density</span>
 <span class="kw">plot</span>(vp, <span class="dt">quantity=</span><span class="st">&quot;dens&quot;</span>)
 <span class="co"># print the currently assumed radar cross section (RCS) per bird:</span>
 <span class="kw">rcs</span>(vp)</code></pre></div>
 <ol style="list-style-type: decimal">
 <li>If you change your assumption on the bird’s radar cross section in the previous example, and assume it is 10 times as large, what will be the effect on the bird density profile?</li>
-<li>Same question, but for the reflectivity profile.</li>
 </ol>
 <p>The assumed radar cross section can be changed as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># let's change the RCS to 110 cm^2</span>
 <span class="kw">rcs</span>(vp) =<span class="st"> </span><span class="dv">110</span></code></pre></div>
 <ol style="list-style-type: decimal">
-<li>Verify your answers on the previous two questions, by re-plotting the vertical profiles for the reflectivity and bird density quantities.</li>
+<li>Verify your answers on the previous two questions, by re-plotting the vertical profiles for the bird density quantity.</li>
 </ol>
 </div>
-<div id="loading-series-of-processed-profile-data-into-r" class="section level2">
-<h2>3. Loading series of processed profile data into R</h2>
-<p>We will use vertical profiles generated for the ENRAM validation campaign at Kullaberg in Sweden in 2015. We will downloaded the data from a different location:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># download data</span>
-<span class="kw">download.file</span>(<span class="st">&quot;https://github.com/adokter/ENRAM-training/raw/master/data/seang20150920-30.zip&quot;</span>, <span class="dt">destfile =</span> <span class="st">&quot;seang20150920-30.zip&quot;</span>)
-<span class="co"># unzip the data; after unzipping you should have a folder '2015' with all the data</span>
-<span class="kw">unzip</span>(<span class="st">&quot;seang20150920-30.zip&quot;</span>)
-<span class="co"># load all the filenames</span>
-vp_paths=<span class="kw">dir</span>(<span class="st">&quot;.&quot;</span>, <span class="dt">recursive=</span><span class="ot">TRUE</span>)
-<span class="co"># let's make a subselection of files: only those that have '20150926' or '20150927' in the filename, i.e. profiles from 26 sep 2015 to 27 sep 2015.</span>
-vp_paths_sep26=vp_paths[<span class="kw">grep</span>(<span class="st">&quot;20150926&quot;</span>,vp_paths)]
-vp_paths_sep27=vp_paths[<span class="kw">grep</span>(<span class="st">&quot;20150927&quot;</span>,vp_paths)]
-vp_paths_sep2627=<span class="kw">c</span>(vp_paths_sep26,vp_paths_sep27)
-<span class="co"># read these vertical profiles (hdf5 files) into R (may take 1-2 minutes to load)</span>
-vplist=<span class="kw">readvp.list</span>(vp_paths_sep2627)
-<span class="co"># print some information on the vplist object. It should contain 576 profiles </span>
-vplist
-<span class="co"># save the object, which allows you to load the data more quickly next time</span>
-<span class="kw">save</span>(vplist,<span class="dt">file=</span><span class="st">&quot;vplist_sep2627.RData&quot;</span>)
-<span class="co"># you can restore the vplist object at any time as follows:</span>
-<span class="kw">load</span>(<span class="st">&quot;vplist_sep2627.RData&quot;</span>)</code></pre></div>
-</div>
 <div id="plotting-time-series-data" class="section level2">
-<h2>4. Plotting time series data</h2>
+<h2>5. Plotting time series data</h2>
 <p>We will now examine multiple vertical profiles at once that are ordered into a time series, e.g. the vertical profiles obtained from a single radar over a full day.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># convert the list of vertical profiles into a time series:</span>
 ts=<span class="kw">vpts</span>(vplist)
@@ -248,19 +265,20 @@ lon=ts$attributes$where$lon
 lat=ts$attributes$where$lat
 <span class="co"># make a subselection for a certain time range, e.g. the night of 26/27</span>
 <span class="co"># september between sunset and 7 UTC. We use the suntime function to calculate sunset</span>
-t.start=<span class="kw">suntime</span>(lon,lat,<span class="st">&quot;2015-09-26&quot;</span>,<span class="dt">rise=</span>F)
+t.start=<span class="kw">suntime</span>(lon,lat,<span class="st">&quot;2015-09-26&quot;</span>,<span class="dt">rise=</span>F) <span class="co"># gives moment of sunset</span>
 t.end=<span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-09-27 07:00&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;UTC&quot;</span>)
 <span class="co"># now that we have the start and end dates defined, we can make a subselection:</span>
 ts.night=ts[ts$dates&gt;t.start &amp;<span class="st"> </span>ts$dates&lt;t.end]
 <span class="co"># plot the time series</span>
 <span class="kw">plot</span>(ts.night)
-<span class="co"># open the help file for the plotting function.</span>
+<span class="co"># check the help file for the plotting function of profile time series</span>
 <span class="co"># Because profile timeseries are of class 'vpts', it's associated plotting function</span>
 <span class="co"># is called plot.vpts:</span>
 ?plot.vpts</code></pre></div>
 <ol style="list-style-type: decimal">
+<li>During practical 1 you made a series of PPI images for this same case (from 3 UTC - 8 UTC). Scroll through yesterday’s images once more with the vertical profile time series next to it. Birds ascend and depart in two different cohorts shortly after each other. Make sure you recognize both in the PPIs and in the profile data.</li>
 <li>Plot the time series also for reflectivity (quantity <code>eta</code>) and reflectivity factor (quantity <code>dbz</code>). Use the help documentation to check out the plotting options available.</li>
-<li>Interpret the wind barbs in the figure: what is the approximate speed and direction at 1400 metre at 22 UTC. In the speed barbs, each half flag represents 2.5 m/s, each full flag 5 m/s, each pennant (triangle) 25 m/s.</li>
+<li>Interpret the wind barbs in the profile time series figure: what is the approximate speed and direction at 1400 metre at 22 UTC. In the speed barbs, each half flag represents 2.5 m/s, each full flag 5 m/s, each pennant (triangle) 25 m/s.</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># time series objects can be subsetted, just as you may be used to with vectors</span>
 <span class="co"># here we subset the first 50 timesteps:</span>
@@ -274,7 +292,7 @@ ts$dates</code></pre></div>
 </ol>
 </div>
 <div id="vertical-integration-surface-density-migration-traffic-rate" class="section level2">
-<h2>5. Vertical integration: surface density &amp; migration traffic rate</h2>
+<h2>6. Vertical integration: surface density &amp; migration traffic rate</h2>
 <p>Often you will want to sum together all the migrants in the vertical dimension, for example if you want a single index of how many birds are migrating at a certain instant. There are at least two ways in which you can do that</p>
 <ul>
 <li>by calculating the vertically integrated bird density (VID), which is <em>surface</em> density as opposed to a <em>volume</em> densities you have been plotting in the previous exercises: this number gives you how many migrants are aloft per square kilometer earth’s surface (unit individuals/km<span class="math inline">\(^{2}\)</span>), and is a vertical integration of the volume densities (unit individuals/km<span class="math inline">\(^{3}\)</span>).</li>
@@ -311,16 +329,16 @@ vintegrated.ts =<span class="st"> </span><span class="kw">vintegrate</span>(ts)
 </ol>
 </div>
 <div id="inspecting-precipitation-signals-in-profiles" class="section level2">
-<h2>6. Inspecting precipitation signals in profiles</h2>
+<h2>7. Inspecting precipitation signals in profiles</h2>
 <p>Precipitation is known to have a major influence on the timing and intensity of migration, therefore it is a useful skill to be able to inspect profiles for presence of precipitation.</p>
 <p>Also, although automated bird quantification algorithms become more and more reliable, distinguishing precipitation from birds remains challenging for algoriths in specific cases. It is therefore important to have the skills to inspect suspicious profiles. That may help you to identify potential errors of the automated methods, and prevent your from overinterpreting the data.</p>
-<p>An easy way of doing that is plotting the vertical profile of total reflectivity (quantity DBZH), which includes everything: birds, insects and precipitation. At C-band, precipitation typically has higher reflectivities than birds, and also extends to much higher altitudes.</p>
+<p>An easy way of doing that is plotting the vertical profile of total reflectivity (quantity DBZH), which includes everything: birds, insects and precipitation. Precipitation often has higher reflectivities than birds, and also extends to much higher altitudes.</p>
 <ol style="list-style-type: decimal">
-<li>Load data from 20 Sep 2015 12:00 UTC to 21 Sep 2015 12:00 UTC of the Angelholm radar of the kullaberg campaign into a time series object (see section 2). Make a plot of the migration traffic rate throughout the night (see section 5).</li>
+<li>Load data from 20 Sep 2015 12:00 UTC to 21 Sep 2015 12:00 UTC into a time series object (just as you did earlier for two other days, see last code block section. Make a profile plot of bird for this night (see section 5), as well a plot of the migration traffic rate throughout the night (see section 6).</li>
 </ol>
 <p>You should see a strong drop in migration traffic rates around 23 UTC, about halfway through the night, which is relatively early. We will check whether precipitation may have played a role.</p>
 <ol style="list-style-type: decimal">
-<li>Make profile plots for this night (see section 4). Make a plot both for bird density (quantity ‘dens’) and total reflectivity (quantity <code>DBZH</code>, showing birds and precipitation combined). Compare the two plots to visually identify periods and altitude layers with precipitation, and make a qualitative guess how rain may have affected this migration event.</li>
+<li>Compare your profile plot for bird density (quantity ‘dens’) with a profile plot for total reflectivity (quantity <code>DBZH</code>, showing birds and precipitation combined). Compare the two plots to visually identify periods and altitude layers with precipitation. Make a qualitative guess how rain may have affected this migration event.</li>
 </ol>
 </div>
 </div>
