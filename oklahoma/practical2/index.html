@@ -196,7 +196,8 @@ file.out=<span class="kw">gsub</span>(<span class="st">&quot;pvol&quot;</span>,<
 <span class="co"># note that this is only a string, you can give it any other name if you want to</span>
 file.out
 <span class="co"># finally, run vol2bird; this generates an output file as specified in file.out</span>
-<span class="kw">vol2bird</span>(file.in,file.out)
+<span class="co"># we set autoconf to TRUE, to let vol2bird figure out the optimal settings by itself</span>
+<span class="kw">vol2bird</span>(file.in,file.out,<span class="dt">autoconf=</span><span class="ot">TRUE</span>)
 <span class="co"># your work directory should now contain a new file 'seang_vp_20150927T030000Z.h5'</span>
 <span class="co"># check that we can read this file, and retrieve the vertical profile from it:</span>
 vp=<span class="kw">readvp</span>(file.out)</code></pre></div>
@@ -342,6 +343,36 @@ vintegrated.ts =<span class="st"> </span><span class="kw">vintegrate</span>(ts)
 <ol style="list-style-type: decimal">
 <li>Compare your profile plot for bird density (quantity ‘dens’) with a profile plot for total reflectivity (quantity <code>DBZH</code>, showing birds and precipitation combined). Compare the two plots to visually identify periods and altitude layers with precipitation. Make a qualitative guess how rain may have affected this migration event.</li>
 </ol>
+</div>
+<div id="processing-multiple-polar-volumes" class="section level2">
+<h2>8. Processing multiple polar volumes</h2>
+<p>This section contains an example for processing a directory of polar volumes into profiles</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># read the filenames of the polar volumes you want to process</span>
+files=<span class="kw">list.files</span>(<span class="st">&quot;~/tmp/nexrad/&quot;</span>,<span class="dt">full.names=</span><span class="ot">TRUE</span>)
+<span class="co"># print the filenames</span>
+files
+<span class="co"># create output directory for processed profiles</span>
+outputdir=<span class="st">&quot;~/tmp/nexrad_out&quot;</span>
+<span class="kw">dir.create</span>(outputdir)
+<span class="co"># let's loop over the files and generate profiles</span>
+for(fileIn in files){
+  <span class="co"># generate the output filename for the input file</span>
+  fileOut=<span class="kw">paste</span>(outputdir,<span class="st">&quot;/&quot;</span>,<span class="kw">basename</span>(fileIn),<span class="st">&quot;_vp.h5&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;&quot;</span>)
+  <span class="co"># generate the profile, and write it as a hdf5 file (for later reference)</span>
+  vp=<span class="kw">vol2bird</span>(fileIn,fileOut,<span class="dt">autoconf=</span>T)
+}</code></pre></div>
+<p>Having generated the profiles, we can read them into R</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># we assume outputdir contains the path to the directory with processed profiles</span>
+profileFiles=<span class="kw">list.files</span>(outputdir,<span class="dt">full.names=</span><span class="ot">TRUE</span>)
+<span class="co"># print them</span>
+profileFiles
+<span class="co"># read them</span>
+vplist=<span class="kw">readvp.list</span>(profileFiles)</code></pre></div>
+<p>You can now continue with visualizing and post-processing as in section 5 and onwards</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># make a time series of profiles:</span>
+ts=<span class="kw">vpts</span>(vplist)
+<span class="co"># plot them between 0 - 3 km altitude:</span>
+<span class="kw">plot</span>(ts,<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">3000</span>))</code></pre></div>
 </div>
 </div>
 
