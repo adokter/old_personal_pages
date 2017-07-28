@@ -359,6 +359,7 @@ for(fileIn in files){
   <span class="co"># generate the output filename for the input file</span>
   fileOut=<span class="kw">paste</span>(outputdir,<span class="st">&quot;/&quot;</span>,<span class="kw">basename</span>(fileIn),<span class="st">&quot;_vp.h5&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;&quot;</span>)
   <span class="co"># generate the profile, and write it as a hdf5 file (for later reference)</span>
+  <span class="co"># we turn autoconfiguration on, so vol2bird chooses the optimal settings for the file automatically</span>
   vp=<span class="kw">vol2bird</span>(fileIn,fileOut,<span class="dt">autoconf=</span>T)
 }</code></pre></div>
 <p>Having generated the profiles, we can read them into R</p>
