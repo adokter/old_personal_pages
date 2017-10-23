@@ -1488,14 +1488,8 @@ var jsani = {
 		$.ajax({
 			url: file_of_filenames,
 			crossDomain: true,
-			success: function(data,status,xhr) {
+			success: function(data) {
 			
-				document.write(file_of_filenames);
-				document.write("\nDEBUG");
-				document.write(data);
-				document.write("\nEND_OF_DATA");
-				document.write(status);
-				document.write(xhr);
 				var isNonBlankLinkRegEx = /\S/;
 				var commentRegEx = /#.*$/;
 				var file_list = data.split("\n");
@@ -1533,14 +1527,7 @@ var jsani = {
 				}
 				jsani.filenames = f; 
 				jsani.init('load_file_list_done');  // start jsani.init again to finish initializing animation
-			},
-                        error: function(xhr,status,error) {
-                                alert(error);
-                                document.write("ajax error");
-                                document.write(xhr);
-                                document.write(status);
-                                document.write(error);
-                        }
+			}
 		});
 	},
 	
