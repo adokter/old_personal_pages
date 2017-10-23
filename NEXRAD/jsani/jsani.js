@@ -1487,6 +1487,7 @@ var jsani = {
 	
 		$.ajax({
 			url: file_of_filenames,
+			crossDomain: true,
 			success: function(data,status,xhr) {
 			
 				document.write(file_of_filenames);
