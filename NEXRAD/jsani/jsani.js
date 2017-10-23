@@ -1483,13 +1483,18 @@ var jsani = {
 
 	//---------------------------------------------------
 	load_file_list: function(file_of_filenames, readOverlays) {
-		
 		// if readOverlays is false then any overlays specified in file_of_filenames are ignored, otherwise they are read and returned along with filenames
 	
 		$.ajax({
 			url: file_of_filenames,
-			success: function(data) {
+			success: function(data,status,xhr) {
 			
+				document.write(file_of_filenames);
+				document.write("\nDEBUG");
+				document.write(data);
+				document.write("\nEND_OF_DATA");
+				document.write(status);
+				document.write(xhr);
 				var isNonBlankLinkRegEx = /\S/;
 				var commentRegEx = /#.*$/;
 				var file_list = data.split("\n");
@@ -1525,10 +1530,16 @@ var jsani = {
 					}
 					jsani.overlays = jsani.parse_overlay_filenames(overlays.join(','));										
 				}
-				
 				jsani.filenames = f; 
 				jsani.init('load_file_list_done');  // start jsani.init again to finish initializing animation
-			}
+			},
+                        error: function(xhr,status,error) {
+                                alert(error);
+                                document.write("ajax error");
+                                document.write(xhr);
+                                document.write(status);
+                                document.write(error);
+                        }
 		});
 	},
 	
