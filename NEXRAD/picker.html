@@ -8,7 +8,8 @@
 <script type="text/javascript">
 	$(function(){
 		$('#datepicker').datepicker({
-                        minDate: new Date(2017,10,23),
+                        minDate: new Date(2017,9,23),
+                        maxDate: new Date(),
 			inline: true,
 			//nextText: '&rarr;',
 			//prevText: '&larr;',
@@ -18,13 +19,7 @@
 			//showOn: "button",
 			//buttonImage: "img/calendar-blue.png",
 			//buttonImageOnly: true,
-                        onSelect: function(dateText, inst) { 
-                              var dateAsString = dateText; //the first parameter of this function
-                              var dateAsObject = $(this).datepicker( 'getDate' ); //the getDate method
-                              var files_url = 'https://s3.amazonaws.com/vol2bird/mosaic/' + $.datepicker.formatDate('yy/mm/dd', dateAsObject) + '/filenames.txt';
-                              document.write(files_url);
-                          }
-			});
+			}).datepicker("setDate", new Date());
 		});
 </script>
 
@@ -53,8 +48,22 @@ code {
 
 <input type="text" id="datepicker" />
 
+<!-- <input type="text" id="debug" />   -->
+
+<button id="demo" type="button" onclick="myFunction()">Play</button>
+
+<script>
+function myFunction() {
+    var dateAsObject = $("#datepicker").datepicker("getDate");
+    var files_url = 'https://s3.amazonaws.com/vol2bird/mosaic/' + $.datepicker.formatDate('yy/mm/dd/', dateAsObject) + 'filenames.txt';
+    document.getElementById("url").value = files_url
+    //document.getElementById("debug").value = files_url
+    jsani.init('start'); 
+}
+</script>
+
 <form name="jsani" id="jsani" action="#" style="width: 7in; height: 5in;">
-        <input type="hidden" name="file_of_filenames" value="https://s3.amazonaws.com/vol2bird/mosaic/filenames.txt">
+        <input type="hidden" id="url" name="file_of_filenames" value="https://s3.amazonaws.com/vol2bird/mosaic/filenames.txt">
 	<input type="hidden" name="imgbaseurl" value="https://s3.amazonaws.com/vol2bird/mosaic/">
 	<input type="hidden" name="controls" value="previous, stopplay, next, looprock, slowfast, zoom, refresh">
 	<input type="hidden" name="maxdwell" value="1000">
@@ -62,6 +71,7 @@ code {
 	<input type="hidden" name="initdwell" value="300">
 	<input type="hidden" name="nsteps" value="10">
 	<input type="hidden" name="missingimages" value="hide">
+	<input type="hidden" name="disable_auto_start" value="1">
 </form>
 
 </body>
