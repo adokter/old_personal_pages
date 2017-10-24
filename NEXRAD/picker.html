@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<title>Datepicker</title>
+<link href="css/normalize.css" rel="stylesheet" type="text/css"/>
+<link href="css/datepicker.css" rel="stylesheet" type="text/css"/>	
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#datepicker').datepicker({
+                        minDate: new Date(2017,10,23),
+			inline: true,
+			//nextText: '&rarr;',
+			//prevText: '&larr;',
+			showOtherMonths: true,
+			//dateFormat: 'dd MM yy',
+			dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+			//showOn: "button",
+			//buttonImage: "img/calendar-blue.png",
+			//buttonImageOnly: true,
+                        onSelect: function(dateText, inst) { 
+                              var dateAsString = dateText; //the first parameter of this function
+                              var dateAsObject = $(this).datepicker( 'getDate' ); //the getDate method
+                              var files_url = 'https://s3.amazonaws.com/vol2bird/mosaic/' + $.datepicker.formatDate('yy/mm/dd', dateAsObject) + '/filenames.txt';
+                              document.write(files_url);
+                          }
+			});
+		});
+</script>
+
+<style type="text/css">
+html, body {
+	font-family: Arial, Helvetica, sans-serif;	
+}
+code {
+	color: #666;
+	padding: 5px;
+	background-color:#ffffdd;
+	border: solid 1px #ccc;
+	display: block;
+	white-space: pre;
+	margin-top: 1em;
+}
+</style>
+
+<script type="text/javascript" src="./jsani/jsani.loader.js"></script>
+
+</head>
+
+<body>
+
+<h1>NEXRAD radar</h1>
+
+<input type="text" id="datepicker" />
+
+<form name="jsani" id="jsani" action="#" style="width: 7in; height: 5in;">
+        <input type="hidden" name="file_of_filenames" value="https://s3.amazonaws.com/vol2bird/mosaic/filenames.txt">
+	<input type="hidden" name="imgbaseurl" value="https://s3.amazonaws.com/vol2bird/mosaic/">
+	<input type="hidden" name="controls" value="previous, stopplay, next, looprock, slowfast, zoom, refresh">
+	<input type="hidden" name="maxdwell" value="1000">
+	<input type="hidden" name="mindwell" value="40">
+	<input type="hidden" name="initdwell" value="300">
+	<input type="hidden" name="nsteps" value="10">
+	<input type="hidden" name="missingimages" value="hide">
+</form>
+
+</body>
+</html>
