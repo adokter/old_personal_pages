@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<head>
 <title>Datepicker</title>
 <link href="css/normalize.css" rel="stylesheet" type="text/css"/>
 <link href="css/datepicker.css" rel="stylesheet" type="text/css"/>	
@@ -7,19 +8,16 @@
 <script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+                var currentDate = new Date();
 		$('#datepicker').datepicker({
                         minDate: new Date(2017,9,23),
-                        maxDate: new Date()+24*3600,
+                        maxDate: new Date(new Date().getTime() + 24*3600*1000),
+                        defaultDate: new Date(),
 			inline: true,
-			//nextText: '&rarr;',
-			//prevText: '&larr;',
 			showOtherMonths: true,
-			//dateFormat: 'dd MM yy',
+                        showButtonPanel: true,
 			dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-			//showOn: "button",
-			//buttonImage: "img/calendar-blue.png",
-			//buttonImageOnly: true,
-			}).datepicker("setDate", new Date());
+			});//.datepicker("setDate", new Date());
 		});
 </script>
 
@@ -46,23 +44,64 @@ code {
 
 <h1>Birds on NEXRAD</h1>
 
-<input type="text" id="datepicker" />
+<input type="text" id="datepicker"/>
 
-<!-- <input type="text" id="debug" />   -->
+<input type="text" id="debug"/>
 
-<button id="demo" type="button" onclick="myFunction()">Play</button>
+<button id="play" type="button" onclick='myFunction()'>Play</button>
+<button id="refresh" type="button" onclick='myFunction2()'>Refresh</button>
+
+
+<script>
+function myFunction2() {
+//    var dateAsObject = $("#datepicker").datepicker("getDate");
+//    var files_url = 'https://s3.amazonaws.com/vol2bird/mosaic/' + $.datepicker.formatDate('yy/mm/dd/', dateAsObject) + 'filenames.txt';
+//    document.getElementById("url").value = files_url;
+      self.location.reload();
+//    jsani.imgURLs = false;
+//    jsani.overlays = [];
+//    jsani.overlay_labels [];
+//    jsani.imgBaseURL false;
+//    jsani.imgWidth false;
+//    jsani.imgHeight = false;
+//    jsani.imgIndex = 0;
+//    jsani.imgDwell = 300;
+//    jsani.timerID = false;
+//    jsani.nLeft = false;
+//    jsani.nOverlaysLeft = false;
+//    jsani.dwellStepRate = false;
+//    jsani.maxDwell = 1400;
+//    jsani.minDwell = 80;
+//    jsani.nSteps = 25;
+//    jsani.looprock = 'loop';
+//    jsani.direction = 'forward';
+//    jsani.maxIndex =  false;
+//    jsani.resizedImgWidth = false;
+//    jsani.resizedImgHeight = false;
+//    jsani.zoomLevel = 1;
+//    jsani.zoomFactor = 1.25;
+//    jsani.zoomEnabled = false;
+//    jsani.filenames = [];
+//    jsani.missingImages = [];
+//    jsani.frameDwell = [];
+//    jsani.frameDwellCounter = [];
+//    jsani.jsani_started = false;
+//    jsani.init('start');}
+</script>
+
+
 
 <script>
 function myFunction() {
     var dateAsObject = $("#datepicker").datepicker("getDate");
     var files_url = 'https://s3.amazonaws.com/vol2bird/mosaic/' + $.datepicker.formatDate('yy/mm/dd/', dateAsObject) + 'filenames.txt';
-    document.getElementById("url").value = files_url
-    //document.getElementById("debug").value = files_url
+    document.getElementById("url").value = files_url;
     jsani.init('start'); 
 }
 </script>
 
-<form name="jsani" id="jsani" action="#" style="width: 7in; height: 5in;">
+<div id="mydiv">
+<form name="jsani" id="jsani" action="#" style="width: 10.5in; height: 7.5in;">
         <input type="hidden" id="url" name="file_of_filenames" value="https://s3.amazonaws.com/vol2bird/mosaic/filenames.txt">
 	<input type="hidden" name="imgbaseurl" value="https://s3.amazonaws.com/vol2bird/mosaic/">
 	<input type="hidden" name="controls" value="previous, stopplay, next, looprock, slowfast, zoom, refresh">
@@ -73,6 +112,7 @@ function myFunction() {
 	<input type="hidden" name="missingimages" value="hide">
 	<input type="hidden" name="disable_auto_start" value="1">
 </form>
+</div>
 
 </body>
 </html>

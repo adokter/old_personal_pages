@@ -832,7 +832,6 @@ var jsani = {
 		if( !document.getElementById ||
 		    !document.getElementsByTagName ||
 		    !document.getElementById( 'jsani' ) ) return;
-			
 		if ( action == 'start' && utils.optionExists('config_file') ) {
 			jsani.load_config( $("#jsani input[name='config_file']").val() );
 			return;
