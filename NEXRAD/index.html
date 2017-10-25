@@ -2,7 +2,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>NEXRAD bird migration</title>
+<title>Real-time bird migration</title>
+<link href="css/normalize.css" rel="stylesheet" type="text/css"/>
+<link href="css/datepicker.css" rel="stylesheet" type="text/css"/>	
 <style type="text/css">
 html, body {
 	font-family: Arial, Helvetica, sans-serif;	
@@ -23,8 +25,9 @@ code {
 </head>
 <body>
 
-<h1>NEXRAD bird migration</h1>
+<h1 style="color:white">Real-time bird migration</h1>
 
+<p style="color:white">Bird migration over the contiguous US as detected by the NEXRAD weather radar network</p>
 <form name="jsani" id="jsani" action="#" style="width: 7in; height: 5in;">
         <input type="hidden" name="file_of_filenames" value="https://s3.amazonaws.com/vol2bird/mosaic/filenames.txt">
 	<input type="hidden" name="imgbaseurl" value="https://s3.amazonaws.com/vol2bird/mosaic/">
@@ -36,7 +39,8 @@ code {
 	<input type="hidden" name="missingimages" value="hide">
 </form>
 
- <a href="https://adriaandokter.com/NEXRAD/archive.html">Explore the archive</a> 
+<p> <a href="http://adriaandokter.com/NEXRAD/archive.html" style="color:white">Explore the archive</a></p>
+<p style="color:white;font-size:70%">Bird data extracted by the <a href="http://github.com/adokter/vol2bird" style="color:white">vol2bird</a> algorithm, see Dokter A.M., Liechti F., Stark H., Delobbe L., Tabary P., Holleman I. Bird migration flight altitudes studied by a network of operational weather radars. J. R. Soc. Interface, 8, 30–43, 2011, DOI: <a href="https://doi.org/10.1098/rsif.2010.0116" style="color:white">10.1098/rsif.2010.0116</a></p>
 </body>
 </html>
 
