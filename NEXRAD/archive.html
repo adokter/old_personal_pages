@@ -54,11 +54,12 @@ function myFunction() {
     var files_url = 'https://s3.amazonaws.com/vol2bird/mosaic/' + $.datepicker.formatDate('yy/mm/dd/', dateAsObject) + 'filenames.txt';
     document.getElementById("url").value = files_url;
     jsani.init('start'); 
-    document.getElementById("instruction").innerHTML = "Refresh page to select a new date";
+    document.getElementById("instruction").innerHTML = "Refresh page before selecting a new date";
 }
 </script>
 
 <div id="mydiv" style="color:white">
+<p id="instruction">Select a date and click Play</p>
 <form name="jsani" id="jsani" action="#" style="width: 10.5in; height: 7.5in;">
         <input type="hidden" id="url" name="file_of_filenames" value="https://s3.amazonaws.com/vol2bird/mosaic/filenames.txt">
 	<input type="hidden" name="imgbaseurl" value="https://s3.amazonaws.com/vol2bird/mosaic/">
@@ -70,7 +71,6 @@ function myFunction() {
 	<input type="hidden" name="missingimages" value="hide">
 	<input type="hidden" name="disable_auto_start" value="1">
 </form>
-<p id="instruction">Select a date and click Play</p>
 </div>
 
 </body>
