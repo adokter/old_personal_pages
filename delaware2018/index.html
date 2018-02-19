@@ -246,10 +246,14 @@ my_spatialgrid=my_ppi$data
 </div>
 <div id="exercise-2" class="section level1">
 <h1>Exercise 2</h1>
-<div id="processing-polar-volume-data-into-vertical-profiles-vol2bird-algorithm" class="section level2">
-<h2>2.1. Processing polar volume data into vertical profiles: vol2bird algorithm</h2>
+<div id="processing-polar-volume-data-into-vertical-profiles" class="section level2">
+<h2>2.1. Processing polar volume data into vertical profiles</h2>
 <p>We will generate vertical profiles with the automated algorithm vol2bird (<a href="https://github.com/adokter/vol2bird" class="uri">https://github.com/adokter/vol2bird</a>), which is included in the bioRad package. You need a working installation of Docker (linux / mac) or Docker for Windows (<strong>not</strong> Docker Toolbox, this is an older implementation of Docker for Windows operating systems that is not supported).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># run vol2bird</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># we will process the same file as in section 1.3:</span>
+file.in
+<span class="co"># check whether the file is still there:</span>
+<span class="kw">file.exists</span>(file.in)
+<span class="co"># run vol2bird</span>
 vp=<span class="kw">vol2bird</span>(file.in,<span class="dt">range.max=</span><span class="dv">35000</span>,<span class="dt">sd_vvp=</span><span class="dv">1</span>,<span class="dt">dealias=</span>T,<span class="dt">dualpol=</span>T)
 <span class="co"># vp is now a 'vp', a vertical profile</span>
 vp
@@ -357,7 +361,8 @@ vintegrated.ts
 <p>Now let’s calculate how many birds passed over the radar during the full time series:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Let's continue with the ts object created in the previous example.</span>
 <span class="co"># we can integrate all the traffic rates [unit: birds/km/h] over time, to obtain the number of birds that</span>
-<span class="co"># have passed over the radar per km transect [unit: birds/km]:</span>
+<span class="co"># have passed over the radar [unit: birds/km]. Like the traffic rates, these numbers are calculated for </span>
+<span class="co"># a 1 km transect perpendicular to the migratory direction:</span>
 <span class="kw">mt</span>(ts)</code></pre></div>
 </div>
 </div>
