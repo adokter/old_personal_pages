@@ -338,8 +338,13 @@ ts[<span class="dv">1</span>:<span class="dv">50</span>]</code></pre></div>
 <p>Precipitation is known to have a major influence on the timing and intensity of migration, therefore it can be useful to inspect profiles for presence of precipitation. An easy way of doing that is plotting the vertical profile of total reflectivity (quantity DBZH), which includes everything: birds, insects and precipitation. Precipitation often has higher reflectivities than birds, and also extends to much higher altitudes.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot the time series</span>
 <span class="kw">plot</span>(ts, <span class="dt">quantity=</span><span class="st">&quot;DBZH&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extract some data from the time series, e.g. the bird</span>
-<span class="kw">fetch</span>(ts, <span class="dt">quantity=</span><span class="st">&quot;dens&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># You can also extract the data from bioRad's class objects into a simple R format:</span>
+<span class="co">#</span>
+<span class="co"># Extract some data from the time series, e.g. the bird density</span>
+<span class="kw">fetch</span>(ts, <span class="dt">quantity=</span><span class="st">&quot;dens&quot;</span>)
+<span class="co"># convert all the data in the time series to a standard data.frame:</span>
+my_dataframe=<span class="kw">as.data.frame</span>(ts)
+my_dataframe</code></pre></div>
 </div>
 <div id="vertical-integration-surface-density-migration-traffic-rate" class="section level2">
 <h2>3.3 Vertical integration: surface density &amp; migration traffic rate</h2>
