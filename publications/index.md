@@ -2,7 +2,7 @@
 layout: article 
 title: "Publications" 
 date: 2015-04-04T10:26:11+02:00 
-modified: 2015-04-04T10:26:52+02:00 
+modified: 2015-07-19T10:26:52+02:00 
 excerpt: "this is the excerpt" 
 image: 
   feature: Oystercatchers-bar.jpg
