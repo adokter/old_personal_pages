@@ -2,7 +2,7 @@
 layout: article 
 title: "Publications" 
 date: 2015-04-04T10:26:11+02:00 
-modified: 2015-07-19T10:26:52+02:00 
+modified: 2018-07-19T10:26:52+02:00 
 excerpt: "this is the excerpt" 
 image: 
   feature: Oystercatchers-bar.jpg
@@ -19,7 +19,7 @@ share: false
 1.      Thomas K. Lameris, Henk P. van der Jeugd, Götz Eichhorn, Adriaan M. Dokter, Willem Bouten, Michiel P. Boom, Konstantin E. Litvin, Bruno J. Ens, Bart A. Nolet, 2018. Arctic geese tune migration to a warming climate but still suffer from a phenological mismatch, Current Biology [DOI 10.1016/j.cub.2018.05.077](https://doi.org/10.1016/j.cub.2018.05.077)
 1.      Nadja Weisshaupt, Adriaan M. Dokter, Juan Arizaga, Mercedes Maruri, Effects of a sea barrier on large-scale migration patterns studied by a network of weather radars. Bird Study [DOI 10.1080/00063657.2018.1476457](https://doi.org/10.1080/00063657.2018.1476457)
 1.      Thomas K. Lameris, Gerhard J.D.M. Müskens, Andrea Kölzsch, Adriaan M. Dokter, Henk P. Van der Jeugd, Bart A. Nolet, 2018. Effects of harness-attached tracking devices on survival, migration, and reproduction in three species of migratory waterfowl. Animal Biotelemetry 6:7 [DOI 10.1186/s40317-018-0153-3](https://doi.org/10.1186/s40317-018-0153-3)
-1.      Cecilia Nilsson, Adriaan M. Dokter, Baptiste Schmid, Martina Scacco, Liesbeth Verlinden, Johan Bäckman, Günther Haase, Giacomo Dell’Omo, Jason W. Chapman, Hidde Leijnse, Felix Liechti. Field validation of radar systems for monitoring bird migration. Journal of Applied Ecology [DOI 10.1111/1365-2664.13174](https://doi.org/10.1111/1365-2664.13174)
+1.      Cecilia Nilsson, Adriaan M. Dokter, Baptiste Schmid, Martina Scacco, Liesbeth Verlinden, Johan Bäckman, Günther Haase, Giacomo Dell’Omo, Jason W. Chapman, Hidde Leijnse, Felix Liechti, 2018. Field validation of radar systems for monitoring bird migration. Journal of Applied Ecology [DOI 10.1111/1365-2664.13174](https://doi.org/10.1111/1365-2664.13174)
 1.      Dokter, A.M., Fokkema, W., Ebbinge, B.S., Olff, H., van der Jeugd, H.P., Nolet, B.A., 2018. Agricultural pastures challenge the attractiveness of natural saltmarsh for a migratory goose. Journal of Applied Ecology [DOI 10.1111/1365-2664.13168](https://doi.org/10.1111/1365-2664.13168)
 1.      Dokter, A.M., Fokkema, W., Bekker, S.K., Bouten, W., Ebbinge, B.S., Müskens, G., Olff, H., van der Jeugd, H.P., Nolet, B.A., 2018. Body stores persist as fitness correlate in a long-distance migrant released from food constraints. Behavioural Ecologya [DOI 10.1093/beheco/ary080](https://doi.org/10.1093/beheco/ary080)
 1.      Dokter, A.M., Loon, E.E., Fokkema, W., Lameris, T.K., Nolet, B.A. and Jeugd, H.P., 2017. Analyzing time-ordered event data with missed observations. Ecology and evolution, 7(18), pp.7362-7369. [DOI 10.1002/ece3.3281](https://doi.org/10.1002/ece3.3281)
