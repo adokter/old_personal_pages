@@ -17,7 +17,7 @@ share: false
 
 
 1.      Lameris TK, van der Jeugd HP, Eichhorn G, **Dokter AM**, Bouten W, Boom MP, Litvin KE, Ens BJ, Nolet BA. (2018) Arctic geese tune migration to a warming climate but still suffer from a phenological mismatch, *Current Biology* [DOI 10.1016/j.cub.2018.05.077](https://doi.org/10.1016/j.cub.2018.05.077)
-1.      Weisshaupt NN, **Dokter AM**, Arizaga J, Maruri M. (2018) Effects of a sea barrier on large-scale migration patterns studied by a network of weather radars. *Bird Study* [DOI 10.1080/00063657.2018.1476457](https://doi.org/10.1080/00063657.2018.1476457)
+1.      Weisshaupt N, **Dokter AM**, Arizaga J, Maruri M. (2018) Effects of a sea barrier on large-scale migration patterns studied by a network of weather radars. *Bird Study* [DOI 10.1080/00063657.2018.1476457](https://doi.org/10.1080/00063657.2018.1476457)
 1.      Lameris TK, Müskens GJDM, Kölzsch A, **Dokter AM**, van der Jeugd HP, Nolet BA. (2018). Effects of harness-attached tracking devices on survival, migration, and reproduction in three species of migratory waterfowl. *Animal Biotelemetry* 6(7) [DOI 10.1186/s40317-018-0153-3](https://doi.org/10.1186/s40317-018-0153-3)
 1.      Nilsson C, **Dokter AM**, Schmid B, Scacco M, Verlinden L, Bäckman J, Haase G, Dell’Omo G, Chapman JW, Leijnse H, Liechti F. (2018). Field validation of radar systems for monitoring bird migration. *Journal of Applied Ecology* [DOI 10.1111/1365-2664.13174](https://doi.org/10.1111/1365-2664.13174)
 1.      **Dokter AM**, Fokkema W, Ebbinge BS, Olff H, van der Jeugd HP, Nolet BA. (2018) Agricultural pastures challenge the attractiveness of natural saltmarsh for a migratory goose. *Journal of Applied Ecology* [DOI 10.1111/1365-2664.13168](https://doi.org/10.1111/1365-2664.13168)
