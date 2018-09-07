@@ -15,7 +15,9 @@ share: false
 
 ### Peer-reviewed articles:
 
-
+1.      **Dokter AM**, Farnsworth F, Fink D, Ruiz-Gutierrez V, Hochachka WM, La Sorte FA, Robinson OJ, Rosenberg KV, Kelling. (2018) Seasonal abundance and survival of North America's migratory avifauna determined by weather radar, *Nature Ecology and Evolution*, in press
+1.      **Dokter AM**, Desmet P, Spaaks JH, van Hoey S, Veen L, Verlinden L, Nilsson C, Haase G, Leijnse H, Farnsworth A, Bouten W, Shamoun-Baranes J, bioRad: biological analysis and visualization of weather radar data. *Ecography*, in press
+1.      Nilsson C, Dokter AM, Verlinden L, Shamoun-Baranes Judy, Schmid B, Desmet P, Bauer S, Alves J, Stepanian P, Sapir N, Wainwright C, Boos M, Górska A, Menz M, Rodrigues P, Leijnse H, Zehtindjiev P, Brabant R, Haase G, Weisshaupt N, Ciach M, Liechti F, Revealing patterns of nocturnal migration using the European weather radar network. *Ecography*, in press
 1.      Lameris TK, van der Jeugd HP, Eichhorn G, **Dokter AM**, Bouten W, Boom MP, Litvin KE, Ens BJ, Nolet BA. (2018) Arctic geese tune migration to a warming climate but still suffer from a phenological mismatch, *Current Biology* [DOI 10.1016/j.cub.2018.05.077](https://doi.org/10.1016/j.cub.2018.05.077)
 1.      Weisshaupt N, **Dokter AM**, Arizaga J, Maruri M. (2018) Effects of a sea barrier on large-scale migration patterns studied by a network of weather radars. *Bird Study* [DOI 10.1080/00063657.2018.1476457](https://doi.org/10.1080/00063657.2018.1476457)
 1.      Lameris TK, Müskens GJDM, Kölzsch A, **Dokter AM**, van der Jeugd HP, Nolet BA. (2018). Effects of harness-attached tracking devices on survival, migration, and reproduction in three species of migratory waterfowl. *Animal Biotelemetry* 6(7) [DOI 10.1186/s40317-018-0153-3](https://doi.org/10.1186/s40317-018-0153-3)
@@ -37,7 +39,8 @@ share: false
 1.	**Dokter AM**, Åkesson S, Beekhuis H, Bouten W, Buurma L, van Gasteren H, Holleman I. (2013) Twilight ascents by common swifts, Apus apus, at dawn and dusk: acquisition of orientation cues? *Animal Behaviour* 85, 545–552
 1.	**Dokter AM**, Baptist MJ, Ens BJ, Krijgsveld KL, van Loon EE. (2013) Bird Radar Validation in the Field by Time-Referencing Line-Transect Surveys. *PLoS One* 8, e74129, 2013.
 1.	Kemp MU, Shamoun-Baranes J, **Dokter AM**, van Loon EE, Bouten W. (2013) The influence of weather on altitude selection by nocturnal migrants in mid-latitudes, *Ibis* 155, 734-749.
-1.	**Dokter AM**, Shamoun-Baranes J, Kemp MU, Tijm S, Holleman I. (2013) High Altitude Bird Migration at Temperate Latitudes: A Synoptic Perspective on Wind Assistance. *PLoS One* 8(1): e52300 2012.
+1.	**Dokter AM**, Shamoun-Baranes J, Kemp MU, Tijm S, Holleman I. (2013) High Altitude Bird Migration at Temperate Latitudes: A Synoptic Perspective on Wind Assistance. *PLoS One* 8(1): e52300
+2012.
 1.	Kemp MU, Shamoun-Baranes J, van Loon EE, McLaren JD, **Dokter AM**, Bouten W. (2012) Quantifying flow-assistance and implications for movement research. *Journal of Theoretical Biology* 308, 56–67
 1.	**Dokter AM**, Liechti F, Stark H, Delobbe L, Tabary P, Holleman I. (2011) Bird migration flight altitudes studied by a network of operational weather radars. *Journal of the Royal Society Interface* 8, 30–43
 1.	Shamoun-Baranes J, **Dokter AM**, van Gasteren H, van Loon EE, Leijnse H, Bouten W. (2011) Birds flee en mass from New Year’s Eve fireworks. *Behavioural Ecology* 22, 1173–1177 
