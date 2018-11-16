@@ -14,11 +14,17 @@ share: false
 ---
 
 ### Peer-reviewed articles:
-
-1.      **Dokter AM**, Farnsworth F, Fink D, Ruiz-Gutierrez V, Hochachka WM, La Sorte FA, Robinson OJ, Rosenberg KV, Kelling. (2018) Seasonal abundance and survival of North America's migratory avifauna determined by weather radar, *Nature Ecology and Evolution*, in press
+1.      **Dokter AM**, Farnsworth F, Fink D, Ruiz-Gutierrez V, Hochachka WM, La Sorte FA, Robinson OJ, Rosenberg KV, Kelling. (2018) Seasonal abundance and survival of North America's migratory avifauna determined by weather radar, *Nature Ecology and Evolution* 2 (10), 1603, [DOI 10.1038/s41559-018-0666-4](https://doi.org/10.1038/s41559-018-0666-4)
+1.      Horton KG, Nilsson C, Van Doren BM, La Sorte FA, **Dokter AM**, Farnsworth A. Bright lights in the big cities: migratory birds’ exposure to artificial light, *Frontiers in Ecology and the Environment*, in press  
+1.      La Sorte FA, Horton KG, Nilsson C, **Dokter AM**. (2018) Projected changes in wind
+assistance under climate change for nocturnally migrating bird populations, *Global Change
+Biology*, in press
+1.      Nilsson C, Horton KG, **Dokter AM**, Van Doren BM, Farnsworth A. (2018) Aeroecology of a solar eclipse, *Ecology Letters*, [DOI 10.1098/rsbl.2018.0485](https://doi.org/10.1098/rsbl.2018.0485)
+1.      Liechti F, Aschwanden J, Blew J, Boos M, Brabant R, **Dokter AM**, Kosarev V, Lukach M, Maruri M, Reyniers M, Schekler I, Schmaljohann H, Schmid b, Weisshaupt N, Sapir N. (2018) Cross‐calibration of different radar systems for monitoring nocturnal bird migration across Europe and the Near East, *Ecography*, in press
+1.      Bauer S, Shamoun‐Baranes J, Nilsson C, Farnsworth A, Kelly J, Reynolds DR, **Dokter AM**, Krauel J, Petterson LB, Horton KG, Chapman JW. (2018) The grand challenges of migration ecology that radar aeroecology can help answer, *Ecography*, in press
 1.      **Dokter AM**, Desmet P, Spaaks JH, van Hoey S, Veen L, Verlinden L, Nilsson C, Haase G, Leijnse H, Farnsworth A, Bouten W, Shamoun-Baranes J. (2018) bioRad: biological analysis and visualization of weather radar data. *Ecography*, in press
 1.      Nilsson C<sup>\*</sup>, **Dokter AM**<sup>\*</sup>, Verlinden L, Shamoun-Baranes Judy, Schmid B, Desmet P, Bauer S, Alves J, Stepanian P, Sapir N, Wainwright C, Boos M, Górska A, Menz M, Rodrigues P, Leijnse H, Zehtindjiev P, Brabant R, Haase G, Weisshaupt N, Ciach M, Liechti F. (2018) Revealing patterns of nocturnal migration using the European weather radar network. *Ecography*, in press. <sup>\*</sup>*authors contributed equally*
-1.      Lameris TK, van der Jeugd HP, Eichhorn G, **Dokter AM**, Bouten W, Boom MP, Litvin KE, Ens BJ, Nolet BA. (2018) Arctic geese tune migration to a warming climate but still suffer from a phenological mismatch, *Current Biology* [DOI 10.1016/j.cub.2018.05.077](https://doi.org/10.1016/j.cub.2018.05.077)
+1.      Lameris TK, van der Jeugd HP, Eichhorn G, **Dokter AM**, Bouten W, Boom MP, Litvin KE, Ens BJ, Nolet BA. (2018) Arctic geese tune migration to a warming climate but still suffer from a phenological mismatch, *Current Biology* 28 (15), 2467-2473 [DOI 10.1016/j.cub.2018.05.077](https://doi.org/10.1016/j.cub.2018.05.077)
 1.      Weisshaupt N, **Dokter AM**, Arizaga J, Maruri M. (2018) Effects of a sea barrier on large-scale migration patterns studied by a network of weather radars. *Bird Study* [DOI 10.1080/00063657.2018.1476457](https://doi.org/10.1080/00063657.2018.1476457)
 1.      Lameris TK, Müskens GJDM, Kölzsch A, **Dokter AM**, van der Jeugd HP, Nolet BA. (2018). Effects of harness-attached tracking devices on survival, migration, and reproduction in three species of migratory waterfowl. *Animal Biotelemetry* 6(7) [DOI 10.1186/s40317-018-0153-3](https://doi.org/10.1186/s40317-018-0153-3)
 1.      Nilsson C, **Dokter AM**, Schmid B, Scacco M, Verlinden L, Bäckman J, Haase G, Dell’Omo G, Chapman JW, Leijnse H, Liechti F. (2018). Field validation of radar systems for monitoring bird migration. *Journal of Applied Ecology* [DOI 10.1111/1365-2664.13174](https://doi.org/10.1111/1365-2664.13174)
