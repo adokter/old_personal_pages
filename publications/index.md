@@ -14,12 +14,13 @@ share: false
 ---
 
 ### Peer-reviewed articles:
+1.      Nilsson C, Bäckman J, **Dokter AM**. (2019) Flocking behaviour in the twilight ascents of Common Swifts Apus apus. *Ibis*, in press.
+1.      La Sorte FA, Horton KG, Nilsson C, **Dokter AM**. (2019) Projected changes in wind
+assistance under climate change for nocturnally migrating bird populations, *Global Change
+Biology*, 25 (2), 589-601
 1.      **Dokter AM**, Farnsworth F, Fink D, Ruiz-Gutierrez V, Hochachka WM, La Sorte FA, Robinson OJ, Rosenberg KV, Kelling. (2018) Seasonal abundance and survival of North America's migratory avifauna determined by weather radar, *Nature Ecology and Evolution* 2 (10), 1603, [DOI 10.1038/s41559-018-0666-4](https://doi.org/10.1038/s41559-018-0666-4)
 1.      Horton KG, Nilsson C, Van Doren BM, La Sorte FA, **Dokter AM**, Farnsworth A. Bright lights in the big cities: migratory birds’ exposure to artificial light, *Frontiers in Ecology and the Environment*, in press  
-1.      La Sorte FA, Horton KG, Nilsson C, **Dokter AM**. (2018) Projected changes in wind
-assistance under climate change for nocturnally migrating bird populations, *Global Change
-Biology*, in press
-1.      Nilsson C, Horton KG, **Dokter AM**, Van Doren BM, Farnsworth A. (2018) Aeroecology of a solar eclipse, *Ecology Letters*, [DOI 10.1098/rsbl.2018.0485](https://doi.org/10.1098/rsbl.2018.0485)
+1.      Nilsson C, Horton KG, **Dokter AM**, Van Doren BM, Farnsworth A. (2018) Aeroecology of a solar eclipse, *Ecology Letters* 14 (11), 20180485, [DOI 10.1098/rsbl.2018.0485](https://doi.org/10.1098/rsbl.2018.0485)
 1.      Liechti F, Aschwanden J, Blew J, Boos M, Brabant R, **Dokter AM**, Kosarev V, Lukach M, Maruri M, Reyniers M, Schekler I, Schmaljohann H, Schmid b, Weisshaupt N, Sapir N. (2018) Cross‐calibration of different radar systems for monitoring nocturnal bird migration across Europe and the Near East, *Ecography*, in press
 1.      Bauer S, Shamoun‐Baranes J, Nilsson C, Farnsworth A, Kelly J, Reynolds DR, **Dokter AM**, Krauel J, Petterson LB, Horton KG, Chapman JW. (2018) The grand challenges of migration ecology that radar aeroecology can help answer, *Ecography*, in press
 1.      **Dokter AM**, Desmet P, Spaaks JH, van Hoey S, Veen L, Verlinden L, Nilsson C, Haase G, Leijnse H, Farnsworth A, Bouten W, Shamoun-Baranes J. (2018) bioRad: biological analysis and visualization of weather radar data. *Ecography*, in press
@@ -28,7 +29,7 @@ Biology*, in press
 1.      Weisshaupt N, **Dokter AM**, Arizaga J, Maruri M. (2018) Effects of a sea barrier on large-scale migration patterns studied by a network of weather radars. *Bird Study* 65, 232-240 [DOI 10.1080/00063657.2018.1476457](https://doi.org/10.1080/00063657.2018.1476457)
 1.      Lameris TK, Müskens GJDM, Kölzsch A, **Dokter AM**, van der Jeugd HP, Nolet BA. (2018). Effects of harness-attached tracking devices on survival, migration, and reproduction in three species of migratory waterfowl. *Animal Biotelemetry* 6(7) [DOI 10.1186/s40317-018-0153-3](https://doi.org/10.1186/s40317-018-0153-3)
 1.      Nilsson C, **Dokter AM**, Schmid B, Scacco M, Verlinden L, Bäckman J, Haase G, Dell’Omo G, Chapman JW, Leijnse H, Liechti F. (2018). Field validation of radar systems for monitoring bird migration. *Journal of Applied Ecology* 55, 2552-2564 [DOI 10.1111/1365-2664.13174](https://doi.org/10.1111/1365-2664.13174)
-1.      **Dokter AM**, Fokkema W, Ebbinge BS, Olff H, van der Jeugd HP, Nolet BA. (2018) Agricultural pastures challenge the attractiveness of natural saltmarsh for a migratory goose. *Journal of Applied Ecology* [DOI 10.1111/1365-2664.13168](https://doi.org/10.1111/1365-2664.13168)
+1.      **Dokter AM**, Fokkema W, Ebbinge BS, Olff H, van der Jeugd HP, Nolet BA. (2018) Agricultural pastures challenge the attractiveness of natural saltmarsh for a migratory goose. *Journal of Applied Ecology* 55, 2707-2718 [DOI 10.1111/1365-2664.13168](https://doi.org/10.1111/1365-2664.13168)
 1.      **Dokter AM**, Fokkema W, Bekker SK, Bouten W, Ebbinge BS, Müskens G, Olff H, van der Jeugd HP, Nolet BA. (2018). Body stores persist as fitness correlate in a long-distance migrant released from food constraints. *Behavioural Ecology* [DOI 10.1093/beheco/ary080](https://doi.org/10.1093/beheco/ary080)
 1.      **Dokter AM**, Loon EE, Fokkema W, Lameris TK, Nolet BA, van der Jeugd HP, 2017. Analyzing time-ordered event data with missed observations. *Ecology and evolution* 7(18), 7362-7369. [DOI 10.1002/ece3.3281](https://doi.org/10.1002/ece3.3281)
 1.      Van Doren BM, Horton KG, **Dokter AM**, Klinck H, Elbin SB, Farnsworth A. (2017) High-intensity urban light installation dramatically alters nocturnal bird migration. *Proceedings of the National Academy of Sciences of the United States of America*, 114(42), 11175-11180. [DOI 10.1073/pnas.1708574114](https://doi.org/10.1073/pnas.1708574114)
