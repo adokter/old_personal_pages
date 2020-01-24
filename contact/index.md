@@ -2,7 +2,7 @@
 layout: article 
 title: "Contact" 
 date: 2015-04-04T10:26:11+02:00 
-modified: 2015-04-04T10:26:52+02:00 
+modified: 2020-01-24T10:26:52+02:00 
 excerpt: "this is the excerpt" 
 image: 
   feature: 
@@ -21,16 +21,15 @@ Dr. Adriaan M. Dokter<br />
 [Information Science][1]<br />
 [Cornell Lab of Ornithology][2]<br />
 Cornell University
-<a href="mailto:{{ 'myadress@tbd.edu' | encode_email }}" title="Email me">Email me</a>
+<a href="mailto:{{ 'amd427@cornell.edu' | encode_email }}" title="Email me">Email me</a>
+159 Sapsucker Woods Rd.
+Ithaca, NY 14850
+Tel: +1 800-843-BIRD
 
 [Computational Geo-Ecology][3] (guest researcher)<br />
 [Institute of Biodiversity and Ecosystem Dynamics][4]  
 [University of Amsterdam][5]  
 Science Park 904, 1098 XH Amsterdam, The Netherlands  
-postal address:  
-Postbus 94216, 1090 GE Amsterdam, The Netherlands  
-Tel: +31-205257456 (+31-205257451 secr)  
-Fax: +31-205257431  
 
 !["it's me"](/images/AdriaanBrent201505.jpg)
 
