@@ -24,6 +24,7 @@ Cornell University
 <a href="mailto:{{ 'amd427@cornell.edu' | encode_email }}" title="Email me">Email me</a>
 159 Sapsucker Woods Rd.
 Ithaca, NY 14850
+
 Tel: +1 800-843-BIRD
 
 [Computational Geo-Ecology][3] (guest researcher)<br />
